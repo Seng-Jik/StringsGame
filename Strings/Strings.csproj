@@ -53,6 +53,7 @@
     <Reference Include="OpenTK-1.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\GameLoop.cs" />
     <Compile Include="Engine\Platform\MainActivity.cs" />
     <Compile Include="Engine\Platform\GLView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
