@@ -23,6 +23,7 @@ namespace Strings.Engine.Platform
             // OnRenderFrame is called from rendering thread, so do all
             // the GL calls there
             RenderOnUIThread = false;
+
         }
 
         // This gets called when the drawing surface is ready
@@ -82,40 +83,11 @@ namespace Strings.Engine.Platform
             // registered that you want to have called
             base.OnRenderFrame(e);
 
-            GL.MatrixMode(All.Projection);
-            GL.LoadIdentity();
-
-            float aspect = (float)Width / (float)Height;
-            GL.Ortho(-aspect, aspect, -1.0f, 1.0f, -1.0f, 1.0f);
-
-            GL.MatrixMode(All.Modelview);
-            GL.Rotate(3.0f, 0.0f, 0.0f, 1.0f);
-
-            GL.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
-            GL.VertexPointer(2, All.Float, 0, square_vertices);
-            GL.EnableClientState(All.VertexArray);
-            GL.ColorPointer(4, All.UnsignedByte, 0, square_colors);
-            GL.EnableClientState(All.ColorArray);
-
-            GL.DrawArrays(All.TriangleStrip, 0, 4);
+            GameLoop.OnUpdate();
 
             SwapBuffers();
         }
 
-        float[] square_vertices = {
-            -0.5f, -0.5f,
-            0.5f, -0.5f,
-            -0.5f, 0.5f,
-            0.5f, 0.5f,
-        };
 
-        byte[] square_colors = {
-            255, 255,   0, 255,
-            0,   255, 255, 255,
-            0,     0,    0,  0,
-            255,   0,  255, 255,
-        };
     }
 }

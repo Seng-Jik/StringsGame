@@ -19,7 +19,7 @@ namespace Strings.Engine.Platform
                     ScreenOrientation = ScreenOrientation.Landscape,
                     MainLauncher = true,
                     Icon = "@mipmap/icon")]
-    public class MainActivity : Activity
+    class MainActivity : Activity
     {
         GLView view;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,6 +32,11 @@ namespace Strings.Engine.Platform
             // Create our OpenGL view, and display it
             view = new GLView(this);
             SetContentView(view);
+
+            Android.Graphics.Rect r = new Android.Graphics.Rect();
+            WindowManager.DefaultDisplay.GetRectSize(r);
+            
+            GameLoop.OnInit((float)r.Width() / (float)r.Height());
         }
 
         protected override void OnPause()
