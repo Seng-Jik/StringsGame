@@ -54,8 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\GameLoop.cs" />
+    <Compile Include="Engine\GameObject.cs" />
+    <Compile Include="Engine\GameObjectList.cs" />
     <Compile Include="Engine\Platform\MainActivity.cs" />
     <Compile Include="Engine\Platform\GLView.cs" />
+    <Compile Include="Game\DemoObject.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

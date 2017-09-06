@@ -1,11 +1,12 @@
 ﻿using OpenTK;
 using OpenTK.Graphics.ES11;
 using System.Diagnostics;
+using System.Collections.Concurrent;
 using Android.Util;
 
 namespace Strings.Engine
 {
-    public static class GameLoop
+    static class GameLoop
     {
         
         /// <summary>
@@ -14,8 +15,9 @@ namespace Strings.Engine
         internal static void OnInit(float aspec)
         {
             stopwatch.Start();
-
             GameLoop.aspec = aspec;
+
+            Root.Attach(new Game.DemoObject());
         }
 
         /// <summary>
@@ -23,43 +25,36 @@ namespace Strings.Engine
         /// </summary>
         internal static void OnUpdate()
         {
-            if (stopwatch.ElapsedMilliseconds > 100) stopwatch.Restart();
+            //Event
+            while (!EventList.IsEmpty)
+            {
 
+            }
+
+            //Rendering
+            GL.ClearColor(0, 0, 0, 1);
+            GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.MatrixMode(All.Projection);
             GL.LoadIdentity();
             GL.Ortho(aspec, -aspec, 1, -1, 0, 1);
-
             GL.MatrixMode(All.Modelview);
-            //GL.LoadIdentity();
-            GL.Rotate(3.0f, 0.0f, 0.0f, 1.0f);
+            GL.LoadIdentity();
 
-            GL.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
-            GL.VertexPointer(2, All.Float, 0, square_vertices);
-            GL.EnableClientState(All.VertexArray);
-            GL.ColorPointer(4, All.UnsignedByte, 0, square_colors);
-            GL.EnableClientState(All.ColorArray);
-
-            GL.DrawArrays(All.TriangleStrip, 0, 4);
-
-            Log.Debug("GameLoopStopwatch", stopwatch.ElapsedMilliseconds.ToString());
+            //Update and Draw
+            float ms = stopwatch.ElapsedMilliseconds;
+            if (ms > 96) ms = 16;
+            Root.OnUpdate(ms/1000.0f);
             stopwatch.Restart();
+
+            Root.OnDraw();
         }
 
-        static float[] square_vertices = {
-            -0.5f, -0.5f,
-            0.5f, -0.5f,
-            -0.5f, 0.5f,
-            0.5f, 0.5f,
-        };
 
-        static byte[] square_colors = {
-            255, 255,   0, 255,
-            0,   255, 255, 255,
-            0,     0,    0,  0,
-            255,   0,  255, 255,
-        };
+
+        public static GameObjectList Root { get; private set; } = new GameObjectList();
+        public static ConcurrentQueue<Android.Views.MotionEvent> EventList =
+            new ConcurrentQueue<Android.Views.MotionEvent>();
+
         static float aspec;
         static Stopwatch stopwatch = new Stopwatch();
     }

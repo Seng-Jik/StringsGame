@@ -23,7 +23,14 @@ namespace Strings.Engine.Platform
             // OnRenderFrame is called from rendering thread, so do all
             // the GL calls there
             RenderOnUIThread = false;
+           
+        }
 
+        public override bool OnTouchEvent(Android.Views.MotionEvent e)
+        {
+            base.OnTouchEvent(e);
+
+            return true;
         }
 
         // This gets called when the drawing surface is ready
