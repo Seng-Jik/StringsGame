@@ -36,7 +36,7 @@ namespace Strings.Engine.Platform
             Android.Graphics.Rect r = new Android.Graphics.Rect();
             WindowManager.DefaultDisplay.GetRectSize(r);
             
-            GameLoop.OnInit((float)r.Width() / (float)r.Height());
+            GameLoop.OnInit(r.Width(), r.Height(),this);
         }
 
         protected override void OnPause()

@@ -38,13 +38,22 @@ namespace Strings.Engine
             objList.RemoveAll(x => x.Died);
         }
 
+        public override void OnTouched(TouchEvent te)
+        {
+            if (ListenTouchEvent)
+            {
+                foreach (var i in objList)
+                    i.OnTouched(te);
+            }
+        }
+
         public void Attach(GameObject obj)
         {
             obj.OnAttached(obj);
             objList.Add(obj);
         }
 
-
+        public bool ListenTouchEvent { get; set; }
 
         List<GameObject> objList = new List<GameObject>();
         bool killed = false;

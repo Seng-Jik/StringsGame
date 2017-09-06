@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics.ES11;
 using OpenTK.Platform.Android;
@@ -31,27 +31,43 @@ namespace Strings.Engine.Platform
             base.OnTouchEvent(e);
 
             TouchEvent te;
-            te.Pos.X = e.GetX();
-            te.Pos.Y = e.GetY();
-
-            switch (e.Action)
+            te.Id = e.GetPointerId(e.ActionIndex);
+            te.Pos = GameLoop.MapScreenPosToGame(new Vector2(e.GetX(e.ActionIndex), e.GetY(e.ActionIndex)));
+            
+            switch (e.ActionMasked)
             {
                 case Android.Views.MotionEventActions.Up:
+                case Android.Views.MotionEventActions.PointerUp:
                     te.Action = TouchEvent.TouchAction.Up;
                     break;
                 case Android.Views.MotionEventActions.Down:
-                case Android.Views.MotionEventActions.Cancel:
+                case Android.Views.MotionEventActions.PointerDown:
                     te.Action = TouchEvent.TouchAction.Down;
+                    break;
+                case Android.Views.MotionEventActions.Cancel:
+                    te.Action = TouchEvent.TouchAction.Cancel;
                     break;
                 case Android.Views.MotionEventActions.Move:
                     te.Action = TouchEvent.TouchAction.Motion;
+
+                    for(int i = 1;i < e.PointerCount;++i)
+                    {
+                        TouchEvent te2;
+                        te2.Id = e.GetPointerId(i);
+                        te2.Action = TouchEvent.TouchAction.Motion;
+                        //e.GetPointerCoords(i, coords);
+                        te2.Pos = GameLoop.MapScreenPosToGame(new Vector2(e.GetX(i), e.GetY(i)));
+                        GameLoop.EventList.Enqueue(te2);
+                    }
                     break;
                 default:
                     return true;
             }
 
+            GameLoop.EventList.Enqueue(te);
             return true;
         }
+
 
         // This gets called when the drawing surface is ready
         protected override void OnLoad(EventArgs e)

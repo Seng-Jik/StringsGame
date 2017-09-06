@@ -3,6 +3,7 @@ using OpenTK.Graphics.ES11;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 using Android.Util;
+using Android.App;
 
 namespace Strings.Engine
 {
@@ -12,12 +13,26 @@ namespace Strings.Engine
         /// <summary>
         /// 初始化时
         /// </summary>
-        internal static void OnInit(float aspec)
+        internal static void OnInit(float width,float height,Activity context)
         {
             stopwatch.Start();
-            GameLoop.aspec = aspec;
+
+            Context = context;
+
+            halfWidth = width / 2;
+            halfHeight = height / 2;
+            aspec = width / height;
 
             Root.Attach(new Game.DemoObject());
+        }
+
+        public static Vector2 MapScreenPosToGame(Vector2 screenPos)
+        {
+            screenPos.X /= halfWidth;
+            screenPos.Y /= halfHeight;
+            screenPos -= new Vector2(1, 1);
+            screenPos.X *= -aspec;
+            return screenPos;
         }
 
         /// <summary>
@@ -27,8 +42,9 @@ namespace Strings.Engine
         {
             //Event
             while (!EventList.IsEmpty)
-            {
-
+            { 
+                if(EventList.TryDequeue(out TouchEvent eve))
+                    Root.OnTouched(eve);
             }
 
             //Rendering
@@ -49,13 +65,17 @@ namespace Strings.Engine
             Root.OnDraw();
         }
 
+        public static Activity Context { get; private set; }
 
+        public static GameObjectList Root { get; private set; } = new GameObjectList()
+        {
+            ListenTouchEvent = true
+        };
 
-        public static GameObjectList Root { get; private set; } = new GameObjectList();
-        public static ConcurrentQueue<Android.Views.MotionEvent> EventList =
-            new ConcurrentQueue<Android.Views.MotionEvent>();
+        public static ConcurrentQueue<TouchEvent> EventList = new ConcurrentQueue<TouchEvent>();
 
         static float aspec;
+        static float halfWidth, halfHeight;
         static Stopwatch stopwatch = new Stopwatch();
     }
 }

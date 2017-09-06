@@ -2,14 +2,15 @@
 
 namespace Strings.Engine
 {
-    struct TouchEvent
+    public struct TouchEvent
     {
         public enum TouchAction
         {
-            Up,Down,Motion
+            Up,Down,Motion,Cancel
         }
 
         public TouchAction Action;
         public Vector2 Pos;
+        public int Id;
     }
 }
