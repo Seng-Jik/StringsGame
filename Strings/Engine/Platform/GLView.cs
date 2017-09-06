@@ -30,6 +30,26 @@ namespace Strings.Engine.Platform
         {
             base.OnTouchEvent(e);
 
+            TouchEvent te;
+            te.Pos.X = e.GetX();
+            te.Pos.Y = e.GetY();
+
+            switch (e.Action)
+            {
+                case Android.Views.MotionEventActions.Up:
+                    te.Action = TouchEvent.TouchAction.Up;
+                    break;
+                case Android.Views.MotionEventActions.Down:
+                case Android.Views.MotionEventActions.Cancel:
+                    te.Action = TouchEvent.TouchAction.Down;
+                    break;
+                case Android.Views.MotionEventActions.Move:
+                    te.Action = TouchEvent.TouchAction.Motion;
+                    break;
+                default:
+                    return true;
+            }
+
             return true;
         }
 
