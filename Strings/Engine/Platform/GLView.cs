@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using OpenTK;
-using OpenTK.Graphics.ES11;
 using OpenTK.Platform.Android;
 using Android.App;
 using Android.Content;
@@ -13,7 +11,7 @@ namespace Strings.Engine.Platform
     {
         public GLView(Context context) : base(context)
         {
-            ContextRenderingApi = OpenTK.Graphics.GLVersion.ES2;
+            
             // do not set context on render frame as we will be rendering
             // on separate thread and thus Android will not set GL context
             // behind our back
@@ -90,7 +88,7 @@ namespace Strings.Engine.Platform
         protected override void CreateFrameBuffer()
         {
             // the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
-            try
+            /*try
             {
                 Log.Verbose("GLCube", "Loading with default settings");
 
@@ -107,7 +105,7 @@ namespace Strings.Engine.Platform
             catch (Exception ex)
             {
                 Log.Verbose("GLCube", ex.ToString());
-            }
+            }*/
 
             // this is a graphics setting that sets everything to the lowest mode possible so
             // the device returns a reliable graphics setting.

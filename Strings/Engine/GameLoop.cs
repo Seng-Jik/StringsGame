@@ -1,5 +1,5 @@
 ﻿using OpenTK;
-using OpenTK.Graphics.ES11;
+using OpenTK.Graphics.ES20;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 using Android.Util;
@@ -54,13 +54,19 @@ namespace Strings.Engine
             }
 
             //Rendering
-            GL.ClearColor(0, 1, 1, 1);
+            GL.ClearColor(0, 0, 1, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             //Update and Draw
             float ms = stopwatch.ElapsedMilliseconds;
             if (ms > 96) ms = 16;
             Root.OnUpdate(ms / 1000.0f);
+            while (!ActionQueue.IsEmpty)
+            {
+                System.Action task;
+                if (ActionQueue.TryDequeue(out task))
+                    task();
+            }
             stopwatch.Restart();
 
             Root.OnDraw();
@@ -90,5 +96,6 @@ namespace Strings.Engine
         static float aspec;
         static float halfWidth, halfHeight;
         static Stopwatch stopwatch = new Stopwatch();
+        static public ConcurrentQueue<System.Action> ActionQueue { get; } = new ConcurrentQueue<System.Action>();
     }
 }

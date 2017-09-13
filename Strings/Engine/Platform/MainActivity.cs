@@ -1,10 +1,6 @@
-﻿using System;
-
+﻿
 using Android.App;
-using Android.Content;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 
@@ -31,9 +27,8 @@ namespace Strings.Engine.Platform
 
             // Create our OpenGL view, and display it
             view = new GLView(this);
+            view.ContextRenderingApi = OpenTK.Graphics.GLVersion.ES2;
             SetContentView(view);
-
-            
             
            
         }

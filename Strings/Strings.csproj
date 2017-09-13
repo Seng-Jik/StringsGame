@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Shaders\DirectPass.vs.glsl" />
-    <AndroidAsset Include="Assets\Shaders\White.fs.glsl" />
+    <AndroidAsset Include="Assets\Shaders\ColorOnly.fs.glsl" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
