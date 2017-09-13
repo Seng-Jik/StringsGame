@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics.ES11;
 using OpenTK.Platform.Android;
-
+using Android.App;
 using Android.Content;
 using Android.Util;
 
@@ -13,6 +13,7 @@ namespace Strings.Engine.Platform
     {
         public GLView(Context context) : base(context)
         {
+            ContextRenderingApi = OpenTK.Graphics.GLVersion.ES2;
             // do not set context on render frame as we will be rendering
             // on separate thread and thus Android will not set GL context
             // behind our back
@@ -23,7 +24,8 @@ namespace Strings.Engine.Platform
             // OnRenderFrame is called from rendering thread, so do all
             // the GL calls there
             RenderOnUIThread = false;
-           
+
+            
         }
 
         public override bool OnTouchEvent(Android.Views.MotionEvent e)
@@ -94,6 +96,12 @@ namespace Strings.Engine.Platform
 
                 // if you don't call this, the context won't be created
                 base.CreateFrameBuffer();
+
+                Android.Graphics.Rect r = new Android.Graphics.Rect();
+                ((Activity)Context).WindowManager.DefaultDisplay.GetRectSize(r);
+
+                GameLoop.OnInit(r.Width(), r.Height(), (Activity)Context);
+
                 return;
             }
             catch (Exception ex)
@@ -108,8 +116,14 @@ namespace Strings.Engine.Platform
                 Log.Verbose("GLCube", "Loading with custom Android settings (low mode)");
                 GraphicsMode = new AndroidGraphicsMode(0, 0, 0, 0, 0, false);
 
+
                 // if you don't call this, the context won't be created
                 base.CreateFrameBuffer();
+
+                Android.Graphics.Rect r = new Android.Graphics.Rect();
+                ((Activity)Context).WindowManager.DefaultDisplay.GetRectSize(r);
+
+                GameLoop.OnInit(r.Width(), r.Height(), (Activity)Context);
                 return;
             }
             catch (Exception ex)

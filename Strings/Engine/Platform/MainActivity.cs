@@ -33,10 +33,9 @@ namespace Strings.Engine.Platform
             view = new GLView(this);
             SetContentView(view);
 
-            Android.Graphics.Rect r = new Android.Graphics.Rect();
-            WindowManager.DefaultDisplay.GetRectSize(r);
             
-            GameLoop.OnInit(r.Width(), r.Height(),this);
+            
+           
         }
 
         protected override void OnPause()
@@ -44,6 +43,8 @@ namespace Strings.Engine.Platform
             // never forget to do this!
             base.OnPause();
             view.Pause();
+
+            GameLoop.OnPaused();
         }
 
         protected override void OnResume()
@@ -51,6 +52,8 @@ namespace Strings.Engine.Platform
             // never forget to do this!
             base.OnResume();
             view.Resume();
+
+            GameLoop.OnResume();
         }
     }
 }

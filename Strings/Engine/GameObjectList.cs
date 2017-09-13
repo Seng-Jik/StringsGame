@@ -47,6 +47,18 @@ namespace Strings.Engine
             }
         }
 
+        public override void OnPaused()
+        {
+            foreach (var i in objList)
+                i.OnPaused();
+        }
+
+        public override void OnResume()
+        {
+            foreach (var i in objList)
+                i.OnResume();
+        }
+
         public void Attach(GameObject obj)
         {
             obj.OnAttached(obj);

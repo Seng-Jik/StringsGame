@@ -9,11 +9,11 @@ namespace Strings.Engine
 {
     static class GameLoop
     {
-        
+
         /// <summary>
         /// 初始化时
         /// </summary>
-        internal static void OnInit(float width,float height,Activity context)
+        internal static void OnInit(float width, float height, Activity context)
         {
             stopwatch.Start();
 
@@ -42,27 +42,34 @@ namespace Strings.Engine
         {
             //Event
             while (!EventList.IsEmpty)
-            { 
-                if(EventList.TryDequeue(out TouchEvent eve))
+            {
+                if (EventList.TryDequeue(out TouchEvent eve))
                     Root.OnTouched(eve);
             }
 
             //Rendering
-            GL.ClearColor(0, 0, 0, 1);
+            GL.ClearColor(0, 1, 1, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.MatrixMode(All.Projection);
-            GL.LoadIdentity();
-            GL.Ortho(aspec, -aspec, 1, -1, 0, 1);
-            GL.MatrixMode(All.Modelview);
-            GL.LoadIdentity();
 
             //Update and Draw
             float ms = stopwatch.ElapsedMilliseconds;
             if (ms > 96) ms = 16;
-            Root.OnUpdate(ms/1000.0f);
+            Root.OnUpdate(ms / 1000.0f);
             stopwatch.Restart();
 
             Root.OnDraw();
+        }
+
+        internal static void OnPaused()
+        {
+            //stopwatch.Stop();
+            Root.OnPaused();
+        }
+
+        internal static void OnResume()
+        {
+            Root.OnResume();
+            //stopwatch.Start();
         }
 
         public static Activity Context { get; private set; }

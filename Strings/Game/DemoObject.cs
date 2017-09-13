@@ -18,10 +18,14 @@ namespace Strings.Game
 {
     class DemoObject : GameObject
     {
+        Android.Media.MediaPlayer m = Android.Media.MediaPlayer.Create(GameLoop.Context, Resource.Raw.demotest);
+        Engine.Renderer.Shader directPass = new Engine.Renderer.Shader("DirectPass", "White");
+
         public DemoObject()
         {
-            Android.Media.MediaPlayer m = Android.Media.MediaPlayer.Create(GameLoop.Context, Resource.Raw.demotest);
-            m.Start();
+            //m.Start();
+            
+            
         }
 
         public override void Kill()
@@ -31,46 +35,16 @@ namespace Strings.Game
 
         public override void OnDraw()
         {
-            GL.Rotate(rotate, 0, 0, 1);
+            directPass.Use();
 
-            GL.VertexPointer(2, All.Float, 0, square_vertices);
+            float[] v = { -0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f };
             GL.EnableClientState(All.VertexArray);
-
-            if (colored)
-            {
-                GL.ColorPointer(4, All.UnsignedByte, 0, square_colors);
-                GL.EnableClientState(All.ColorArray);
-            }
-
-            GL.DrawArrays(All.TriangleStrip, 0, 4);
-            if (colored)
-            {
-                GL.ColorPointer(4, All.UnsignedByte, 0, IntPtr.Zero);
-                GL.DisableClientState(All.ColorArray);
-            }
-
-
-            GL.LoadIdentity();
-
-
-
-            List<float> verts = new List<float>();
-            foreach(var i in fingers)
-            {
-                verts.Add(i.Value.X - 0.25f);   verts.Add(i.Value.Y - 0.25f);
-                verts.Add(i.Value.X - 0.25f);   verts.Add(i.Value.Y + 0.25f);
-                verts.Add(i.Value.X + 0.25f);   verts.Add(i.Value.Y + 0.25f);
-            }
-
-            var vertsArr = verts.ToArray();
-            GL.VertexPointer(2, All.Float, 0, vertsArr);
-            GL.DrawArrays(All.Triangles, 0, fingers.Count * 3);
-
-            GL.VertexPointer(2, All.Float, 0, IntPtr.Zero);
+            GL.VertexPointer(6, All.Float, 2, v);
             GL.DisableClientState(All.VertexArray);
 
-            
+            GL.DrawArrays(All.Triangles, 0, 3);
 
+            Engine.Renderer.Shader.Unuse();
         }
 
         public override void OnUpdate(float time)
@@ -98,24 +72,23 @@ namespace Strings.Game
                     break;
             }
 
+
             colored = fingers.Count > 0;
 
             Log.Debug("Touch Pos", te.Pos.ToString());
         }
 
-        static float[] square_vertices = {
-            -0.5f, -0.5f,
-            0.5f, -0.5f,
-            -0.5f, 0.5f,
-            0.5f, 0.5f,
-        };
+        public override void OnPaused()
+        {
+            base.OnPaused();
+            m.Pause();
+        }
 
-        static byte[] square_colors = {
-            255, 255,   0, 255,
-            0,   255, 255, 255,
-            0,     0,    0,  0,
-            255,   0,  255, 255,
-        };
+        public override void OnResume()
+        {
+            base.OnResume();
+            m.Start();
+        }
 
         float rotate = 0;
         bool colored = false;
