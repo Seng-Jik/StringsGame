@@ -38,18 +38,36 @@ namespace Strings.Engine.Renderer
             {
                 Log.Error("Shader Error", ex.Message);
             }
+
+            Use();
+
+            //设置着色器的各个属性
+            var m = GameLoop.Camera;
+            GL.UniformMatrix4(GL.GetUniformLocation(shaderID,"Camera"), false, ref m);
+
+            Unuse();
         }
 
         public void Use()
         {
+            stateStack.Push(stateStack);
             GL.UseProgram(shaderID);
         }
 
         public static void Unuse()
         {
-            GL.UseProgram(0);
+            if (stateStack.Count > 0)
+            {
+                stateStack.Pop();
+                GL.UseProgram((int)stateStack.Peek());
+            }
+            else
+            {
+                GL.UseProgram(0);
+            }
         }
 
         int shaderID;
+        static System.Collections.Stack stateStack = new System.Collections.Stack();
     }
 }

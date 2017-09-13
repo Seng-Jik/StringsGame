@@ -23,8 +23,14 @@ namespace Strings.Engine
             halfHeight = height / 2;
             aspec = width / height;
 
+            Matrix4 m;
+            Matrix4.CreateOrthographic(640 * aspec, 640, 0, 1,out m);
+            Camera = m;
+
             Root.Attach(new Game.DemoObject());
         }
+
+        public static Matrix4 Camera { get; private set; }
 
         public static Vector2 MapScreenPosToGame(Vector2 screenPos)
         {
