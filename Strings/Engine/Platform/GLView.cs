@@ -88,7 +88,7 @@ namespace Strings.Engine.Platform
         protected override void CreateFrameBuffer()
         {
             // the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
-            /*try
+            try
             {
                 Log.Verbose("GLCube", "Loading with default settings");
 
@@ -105,7 +105,7 @@ namespace Strings.Engine.Platform
             catch (Exception ex)
             {
                 Log.Verbose("GLCube", ex.ToString());
-            }*/
+            }
 
             // this is a graphics setting that sets everything to the lowest mode possible so
             // the device returns a reliable graphics setting.

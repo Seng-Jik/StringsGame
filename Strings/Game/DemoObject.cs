@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using OpenTK;
-using OpenTK.Graphics.ES20;
+using OpenTK.Graphics.ES11;
 using Android.Util;
 
 using Strings.Engine;
@@ -10,7 +10,6 @@ namespace Strings.Game
     class DemoObject : GameObject
     {
         Android.Media.MediaPlayer m = Android.Media.MediaPlayer.Create(GameLoop.Context, Resource.Raw.demotest);
-        Engine.Renderer.Shader directPass = new Engine.Renderer.Shader("DirectPass", "ColorOnly");
 
         public DemoObject()
         {
@@ -26,26 +25,24 @@ namespace Strings.Game
 
         public override void OnDraw()
         {
-            directPass.Use();
 
             float[] v = {
-                -0.5f, -0.5f,
-                0.5f, -0.5f,
-                0.5f, 0.5f
+                -300.5f, -300.5f,
+                300.5f, -300.5f,
+                300.5f, 300.5f
             };
             float[] col = {
                 0,1,0,1,
                 1,0,0,1,
                 0,0,1,1
             };
-            GL.EnableVertexAttribArray(directPass.PosLoc);
-            GL.EnableVertexAttribArray(directPass.ColorLoc);
-            GL.VertexAttribPointer(directPass.PosLoc, 2, VertexAttribPointerType.Float, false, 0, v);
-            GL.VertexAttribPointer(directPass.ColorLoc, 4, VertexAttribPointerType.Float, false, 0, col);
 
-            GL.DrawArrays(BeginMode.Triangles, 0, 3);
 
-            Engine.Renderer.Shader.Unuse();
+
+            GL.VertexPointer(2, All.Float, 0, v);
+            GL.ColorPointer(4, All.Float, 0, col);
+            GL.DrawArrays(All.Triangles, 0, 3);
+
         }
 
         public override void OnUpdate(float time)

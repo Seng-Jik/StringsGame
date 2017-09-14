@@ -58,7 +58,7 @@
     <Compile Include="Engine\GameObjectList.cs" />
     <Compile Include="Engine\Platform\MainActivity.cs" />
     <Compile Include="Engine\Platform\GLView.cs" />
-    <Compile Include="Engine\Renderer\Shader.cs" />
+    <Compile Include="Engine\Renderer.cs" />
     <Compile Include="Engine\TouchEvent.cs" />
     <Compile Include="Game\DemoObject.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

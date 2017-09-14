@@ -1,5 +1,5 @@
 ﻿using OpenTK;
-using OpenTK.Graphics.ES20;
+using OpenTK.Graphics.ES11;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 using Android.Util;
@@ -23,9 +23,9 @@ namespace Strings.Engine
             halfHeight = height / 2;
             aspec = width / height;
 
-            Matrix4 m;
-            Matrix4.CreateOrthographic(640 * aspec, 640, 0, 1,out m);
-            Camera = m;
+
+
+
 
             Root.Attach(new Game.DemoObject());
         }
@@ -56,6 +56,16 @@ namespace Strings.Engine
             //Rendering
             GL.ClearColor(0, 0, 1, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+
+
+            GL.MatrixMode(All.Projection);
+            GL.LoadIdentity();
+            GL.Ortho(640 * aspec, -640 * aspec, 640, -640, 0, 1);
+            GL.MatrixMode(All.Modelview);
+            GL.LoadIdentity();
+
+            GL.EnableClientState(All.VertexArray);
+            GL.EnableClientState(All.ColorArray);
 
             //Update and Draw
             float ms = stopwatch.ElapsedMilliseconds;

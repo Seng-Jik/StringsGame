@@ -27,7 +27,7 @@ namespace Strings.Engine.Platform
 
             // Create our OpenGL view, and display it
             view = new GLView(this);
-            view.ContextRenderingApi = OpenTK.Graphics.GLVersion.ES2;
+            view.ContextRenderingApi = OpenTK.Graphics.GLVersion.ES1;
             SetContentView(view);
             
            
