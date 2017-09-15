@@ -20,7 +20,7 @@ namespace Strings.Game
             base.OnAttached(parent);
 
             //Game Startup
-            parent.Attach(new DemoObject());
+            parent.Attach(new TitleScene.TitleScene());
             Kill();
         }
     }

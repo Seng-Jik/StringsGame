@@ -26,6 +26,8 @@ namespace Strings.Engine
                 objList[i].OnUpdate(time);
 
             objList.RemoveAll(x => x.Died);
+
+            if (objList.Count == 0 && KillSelfWhenEmpty) Kill();
         }
 
         public override void OnTouched(TouchEvent te)
@@ -55,7 +57,9 @@ namespace Strings.Engine
             objList.Add(obj);
         }
 
-        public bool ListenTouchEvent { get; set; }
+        public bool KillSelfWhenEmpty { get; protected set; } = false;
+
+        public bool ListenTouchEvent { get; set; } = true;
 
         List<GameObject> objList = new List<GameObject>();
         bool killed = false;

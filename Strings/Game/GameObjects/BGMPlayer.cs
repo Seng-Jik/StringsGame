@@ -17,17 +17,33 @@ namespace Strings.Game.GameObjects
     {
         public override void Kill()
         {
-            player.Stop();
-            Died = true;
+            Parent.Attach(new Task(
+                () =>
+                {
+                    player.Stop();
+                    Died = true;
+                    Volume.Kill();
+                },3));
+
+            Volume.Lerp(3, 0);
+
+        }
+
+        public override void OnAttached(GameObjectList parent)
+        {
+            base.OnAttached(parent);
+            parent.Attach(Volume);
         }
 
         public override void OnUpdate(float deltaTime)
         {
             IsBeatFrame = false;
+            player.SetVolume(Volume.Value, Volume.Value);
         }
 
         public BGMPlayer(int bgmResID,float bpm)
         {
+            Volume.Value = 1.0f;
             player = Android.Media.MediaPlayer.Create(GameLoop.Context, bgmResID);
             player.Start();
         }
@@ -45,5 +61,6 @@ namespace Strings.Game.GameObjects
         public bool IsBeatFrame { get; private set; }
 
         Android.Media.MediaPlayer player;
+        public Lerper Volume { get; private set; } = new Lerper();
     }
 }
