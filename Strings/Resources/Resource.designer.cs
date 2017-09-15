@@ -77,7 +77,7 @@ namespace Strings
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int demotest = 2130968576;
+			public const int bwv846 = 2130968576;
 			
 			static Raw()
 			{
@@ -91,12 +91,6 @@ namespace Strings
 		
 		public partial class String
 		{
-			
-			// aapt resource value: 0x7f050002
-			public const int DirectPassFS = 2131034114;
-			
-			// aapt resource value: 0x7f050001
-			public const int DirectPassVS = 2131034113;
 			
 			// aapt resource value: 0x7f050000
 			public const int app_name = 2131034112;

@@ -39,7 +39,7 @@ namespace Strings.Engine
         }
 
         //Draw
-        public static void FillBoxes(Box2[] vert, Vector4[] color)
+        public static void FillBoxes(Box2[] vert)
         {
             //Vertex
             v.Clear();
@@ -59,12 +59,12 @@ namespace Strings.Engine
             GL.DisableClientState(All.ColorArray);
 
             GL.VertexPointer(2, All.Float, 0, vArr);
-            GL.DrawArrays(All.Triangles, 0, 3);
+            GL.DrawArrays(All.Triangles, 0, 6 * vert.Length);
 
             GL.EnableClientState(All.ColorArray);
         }
 
-        public static void FillColoredBoxes(Box2[] vert, Vector4[] color)
+        public static void FillBoxes(Box2[] vert, Vector4[] color)
         {
             //Vertex
             v.Clear();
@@ -97,16 +97,76 @@ namespace Strings.Engine
 
             GL.VertexPointer(2, All.Float, 0, vArr);
             GL.ColorPointer(4, All.Float, 0, vCol);
-            GL.DrawArrays(All.Triangles, 0, 3);
+            GL.DrawArrays(All.Triangles, 0, 6 * vert.Length);
         }
 
-        public static void DrawColorBoxes(Box2[] vert, Vector4[] color)
+        public static void DrawBoxes(Box2[] vert)
         {
+            //Vertex
+            v.Clear();
+            for (int i = 0; i < vert.Length; ++i)
+            {
+                v.Add(vert[i].Left); v.Add(vert[i].Top);
+                v.Add(vert[i].Right); v.Add(vert[i].Top);
 
+                v.Add(vert[i].Right); v.Add(vert[i].Top);
+                v.Add(vert[i].Right); v.Add(vert[i].Bottom);
+
+                v.Add(vert[i].Right); v.Add(vert[i].Bottom);
+                v.Add(vert[i].Left); v.Add(vert[i].Bottom);
+
+                v.Add(vert[i].Left); v.Add(vert[i].Bottom);
+                v.Add(vert[i].Left); v.Add(vert[i].Top);
+            }
+
+            var vArr = v.ToArray();
+
+            GL.DisableClientState(All.ColorArray);
+
+            GL.VertexPointer(2, All.Float, 0, vArr);
+            GL.DrawArrays(All.Lines, 0, 8 * vert.Length);
+
+            GL.EnableClientState(All.ColorArray);
         }
 
-        public static void DrawLines(Box2[] vert,Vector4[] color)
+        public static void DrawBoxes(Box2[] vert, Vector4[] color)
         {
+            //Vertex
+            v.Clear();
+            for (int i = 0; i < vert.Length; ++i)
+            {
+                v.Add(vert[i].Left); v.Add(vert[i].Top);
+                v.Add(vert[i].Right); v.Add(vert[i].Top);
+
+                v.Add(vert[i].Right); v.Add(vert[i].Top);
+                v.Add(vert[i].Right); v.Add(vert[i].Bottom);
+
+                v.Add(vert[i].Right); v.Add(vert[i].Bottom);
+                v.Add(vert[i].Left); v.Add(vert[i].Bottom);
+
+                v.Add(vert[i].Left); v.Add(vert[i].Bottom);
+                v.Add(vert[i].Left); v.Add(vert[i].Top);
+            }
+            var vArr = v.ToArray();
+
+            v.Clear();
+            for (int i = 0; i < vert.Length; ++i)
+            {
+                for (int j = 0; j < 8; ++j)
+                {
+                    v.Add(color[i].X);
+                    v.Add(color[i].Y);
+                    v.Add(color[i].Z);
+                    v.Add(color[i].W);
+                }
+            }
+
+            var vCol = v.ToArray();
+
+
+            GL.VertexPointer(2, All.Float, 0, vArr);
+            GL.ColorPointer(4, All.Float, 0, vCol);
+            GL.DrawArrays(All.Lines, 0, 8 * vert.Length);
 
         }
 

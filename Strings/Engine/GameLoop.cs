@@ -23,11 +23,7 @@ namespace Strings.Engine
             halfHeight = height / 2;
             aspec = width / height;
 
-
-
-
-
-            Root.Attach(new Game.DemoObject());
+            Root.Attach(new Game.Startup());
         }
 
         public static Matrix4 Camera { get; private set; }
@@ -46,40 +42,47 @@ namespace Strings.Engine
         /// </summary>
         internal static void OnUpdate()
         {
-            //Event
-            while (!EventList.IsEmpty)
+            try
             {
-                if (EventList.TryDequeue(out TouchEvent eve))
-                    Root.OnTouched(eve);
+                //Event
+                while (!EventList.IsEmpty)
+                {
+                    if (EventList.TryDequeue(out TouchEvent eve))
+                        Root.OnTouched(eve);
+                }
+
+                //Rendering
+                GL.ClearColor(0, 0, 0, 0);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
+
+
+                GL.MatrixMode(All.Projection);
+                GL.LoadIdentity();
+                GL.Ortho(640 * aspec, -640 * aspec, 640, -640, 0, 1);
+                GL.MatrixMode(All.Modelview);
+                GL.LoadIdentity();
+
+                GL.EnableClientState(All.VertexArray);
+                GL.EnableClientState(All.ColorArray);
+
+                //Update and Draw
+                float ms = stopwatch.ElapsedMilliseconds;
+                if (ms > 96) ms = 16;
+                Root.OnUpdate(ms / 1000.0f);
+                while (!ActionQueue.IsEmpty)
+                {
+                    System.Action task;
+                    if (ActionQueue.TryDequeue(out task))
+                        task();
+                }
+                stopwatch.Restart();
+
+                Root.OnDraw();
             }
-
-            //Rendering
-            GL.ClearColor(0, 0, 1, 1);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
-
-            GL.MatrixMode(All.Projection);
-            GL.LoadIdentity();
-            GL.Ortho(640 * aspec, -640 * aspec, 640, -640, 0, 1);
-            GL.MatrixMode(All.Modelview);
-            GL.LoadIdentity();
-
-            GL.EnableClientState(All.VertexArray);
-            GL.EnableClientState(All.ColorArray);
-
-            //Update and Draw
-            float ms = stopwatch.ElapsedMilliseconds;
-            if (ms > 96) ms = 16;
-            Root.OnUpdate(ms / 1000.0f);
-            while (!ActionQueue.IsEmpty)
+            catch(System.Exception ex)
             {
-                System.Action task;
-                if (ActionQueue.TryDequeue(out task))
-                    task();
+                Log.Error("Game Exception", ex.ToString());
             }
-            stopwatch.Restart();
-
-            Root.OnDraw();
         }
 
         internal static void OnPaused()

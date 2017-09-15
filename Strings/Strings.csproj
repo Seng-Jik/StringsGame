@@ -61,12 +61,13 @@
     <Compile Include="Engine\Renderer.cs" />
     <Compile Include="Engine\TouchEvent.cs" />
     <Compile Include="Game\DemoObject.cs" />
+    <Compile Include="Game\GameObjects\BGMPlayer.cs" />
+    <Compile Include="Game\GameObjects\Task.cs" />
+    <Compile Include="Game\Startup.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Shaders\DirectPass.vs.glsl" />
-    <AndroidAsset Include="Assets\Shaders\ColorOnly.fs.glsl" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -85,7 +86,7 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\raw\demotest.mp3" />
+    <AndroidResource Include="Resources\raw\bwv846.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

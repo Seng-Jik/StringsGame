@@ -9,13 +9,19 @@ namespace Strings.Game
 {
     class DemoObject : GameObject
     {
-        Android.Media.MediaPlayer m = Android.Media.MediaPlayer.Create(GameLoop.Context, Resource.Raw.demotest);
-
         public DemoObject()
         {
-            //m.Start();
-            
-            
+        }
+
+        public override void OnAttached(GameObjectList parent)
+        {
+            base.OnAttached(parent);
+
+            parent.Attach(
+                new GameObjects.Task(
+                    () => parent.Attach(new GameObjects.BGMPlayer(Resource.Raw.bwv846, 120))
+                    )
+                );
         }
 
         public override void Kill()
@@ -26,23 +32,25 @@ namespace Strings.Game
         public override void OnDraw()
         {
 
-            float[] v = {
-                -300.5f, -300.5f,
-                300.5f, -300.5f,
-                300.5f, 300.5f
+            Box2[] b = {
+                new Box2(-300, -300, -100, -100),
+                new Box2(100,-300,300,-100)
             };
-            float[] col = {
-                0,1,0,1,
-                1,0,0,1,
-                0,0,1,1
+            
+
+            Vector4[] col =
+            {
+                new Vector4(0.5F,1,0.5F,1.0F),
+                new Vector4(1.0F,0,0,1)
             };
 
+            Renderer.FillBoxes(b);
+            Renderer.DrawBoxes(b, col);
 
-
-            GL.VertexPointer(2, All.Float, 0, v);
-            GL.ColorPointer(4, All.Float, 0, col);
-            GL.DrawArrays(All.Triangles, 0, 3);
-
+            b[0].Top += 400;b[0].Bottom += 400;
+            b[1].Top += 400;b[1].Bottom += 400;
+            Renderer.FillBoxes(b,col);
+            Renderer.DrawBoxes(b);
         }
 
         public override void OnUpdate(float time)
@@ -74,18 +82,6 @@ namespace Strings.Game
             colored = fingers.Count > 0;
 
             Log.Debug("Touch Pos", te.Pos.ToString());
-        }
-
-        public override void OnPaused()
-        {
-            base.OnPaused();
-            m.Pause();
-        }
-
-        public override void OnResume()
-        {
-            base.OnResume();
-            m.Start();
         }
 
         float rotate = 0;
