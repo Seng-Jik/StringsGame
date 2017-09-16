@@ -6,3 +6,4 @@
 /.vs
 /Strings/bin
 /Strings/obj
+*.log

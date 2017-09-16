@@ -23,8 +23,8 @@ namespace Strings.Engine
         public override void OnUpdate(float time)
         {
             base.OnUpdate(time);
-            for (int i = 0; i < objList.Count; ++i)
-                objList[i].OnUpdate(time);
+            foreach(var i in objList)
+                i.OnUpdate(time);
 
             objList.RemoveAll(x => x.Died);
 
