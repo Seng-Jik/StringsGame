@@ -22,8 +22,6 @@ namespace Strings.Engine.Platform
             // OnRenderFrame is called from rendering thread, so do all
             // the GL calls there
             RenderOnUIThread = false;
-
-            
         }
 
         public override bool OnTouchEvent(Android.Views.MotionEvent e)
@@ -93,12 +91,7 @@ namespace Strings.Engine.Platform
                 Log.Verbose("GLCube", "Loading with default settings");
 
                 // if you don't call this, the context won't be created
-                base.CreateFrameBuffer();
-
-                Android.Graphics.Rect r = new Android.Graphics.Rect();
-                ((Activity)Context).WindowManager.DefaultDisplay.GetRectSize(r);
-
-                GameLoop.OnInit(r.Width(), r.Height(), (Activity)Context);
+                base.CreateFrameBuffer();          
 
                 return;
             }
@@ -118,10 +111,6 @@ namespace Strings.Engine.Platform
                 // if you don't call this, the context won't be created
                 base.CreateFrameBuffer();
 
-                Android.Graphics.Rect r = new Android.Graphics.Rect();
-                ((Activity)Context).WindowManager.DefaultDisplay.GetRectSize(r);
-
-                GameLoop.OnInit(r.Width(), r.Height(), (Activity)Context);
                 return;
             }
             catch (Exception ex)

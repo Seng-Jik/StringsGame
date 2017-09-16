@@ -15,16 +15,21 @@ namespace Strings.Engine
         /// </summary>
         internal static void OnInit(float width, float height, Activity context)
         {
-            stopwatch.Start();
-
             Context = context;
+            if (!inited)
+            {
+                stopwatch.Start();
 
-            halfWidth = width / 2;
-            halfHeight = height / 2;
-            aspec = width / height;
+                halfWidth = width / 2;
+                halfHeight = height / 2;
+                aspec = width / height;
 
-            Root.Attach(new Game.Startup());
+                Root.Attach(new Game.Startup());
+            }
+            inited = true;
         }
+
+        static bool inited = false;
 
         public static Matrix4 Camera { get; private set; }
 

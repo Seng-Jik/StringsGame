@@ -59,6 +59,11 @@ namespace Strings.Engine
                  objList.Add(obj));
         }
 
+        public void Clear()
+        {
+            objList.Clear();
+        }
+
         public bool KillSelfWhenEmpty { get; protected set; } = false;
 
         public bool ListenTouchEvent { get; set; } = true;

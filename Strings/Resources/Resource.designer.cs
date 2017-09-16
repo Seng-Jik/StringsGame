@@ -41,11 +41,30 @@ namespace Strings
 			}
 		}
 		
+		public partial class Drawable
+		{
+			
+			// aapt resource value: 0x7f020000
+			public const int start = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int title = 2130837505;
+			
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Drawable()
+			{
+			}
+		}
+		
 		public partial class Layout
 		{
 			
-			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			// aapt resource value: 0x7f040000
+			public const int Main = 2130968576;
 			
 			static Layout()
 			{
@@ -60,8 +79,8 @@ namespace Strings
 		public partial class Mipmap
 		{
 			
-			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			// aapt resource value: 0x7f030000
+			public const int icon = 2130903040;
 			
 			static Mipmap()
 			{
@@ -76,8 +95,8 @@ namespace Strings
 		public partial class Raw
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int bwv846 = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int bwv846 = 2131034112;
 			
 			static Raw()
 			{
@@ -92,8 +111,8 @@ namespace Strings
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int app_name = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int app_name = 2131099648;
 			
 			static String()
 			{

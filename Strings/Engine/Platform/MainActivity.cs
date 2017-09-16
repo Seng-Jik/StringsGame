@@ -3,6 +3,7 @@ using Android.App;
 using Android.Views;
 using Android.OS;
 using Android.Content.PM;
+using Strings.Game;
 
 namespace Strings.Engine.Platform
 {
@@ -29,8 +30,11 @@ namespace Strings.Engine.Platform
             view = new GLView(this);
             view.ContextRenderingApi = OpenTK.Graphics.GLVersion.ES1;
             SetContentView(view);
-            
-           
+
+            Android.Graphics.Rect r = new Android.Graphics.Rect();
+            WindowManager.DefaultDisplay.GetRectSize(r);
+
+            GameLoop.OnInit(r.Width(), r.Height(), this);
         }
 
         protected override void OnPause()
@@ -38,8 +42,9 @@ namespace Strings.Engine.Platform
             // never forget to do this!
             base.OnPause();
             view.Pause();
-
             GameLoop.OnPaused();
+
+            Finish();
         }
 
         protected override void OnResume()
