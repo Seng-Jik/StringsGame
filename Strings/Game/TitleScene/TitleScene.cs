@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Strings.Engine;
+using Strings.Game.GameObjects;
 
 namespace Strings.Game.TitleScene
 {
@@ -30,8 +31,22 @@ namespace Strings.Game.TitleScene
 
             var bgm = new GameObjects.BGMPlayer(Resource.Raw.bwv846, 0);
             Attach(bgm);
-            Attach(new GameObjects.Task(() => bgm.Kill(), 10));
-            Attach(new GameObjects.Task(() => parent.Attach(new DemoObject()), 10));
+            Attach(new StarDrawer());
         }
+
+        public override void OnTouched(TouchEvent te)
+        {
+            base.OnTouched(te);
+
+            if(te.Action == TouchEvent.TouchAction.Down & !touched)
+            {
+                touched = true;
+
+                Parent.Attach(new Task(() => Parent.Attach(new DemoObject()),5));
+                Kill();
+            }
+        }
+
+        bool touched = false;
     }
 }

@@ -1,8 +1,17 @@
-﻿namespace Strings.Engine
+﻿using System;
+using System.Collections.Generic;
+
+namespace Strings.Engine
 {
     public abstract class GameObject
     {
-        public virtual void OnUpdate(float deltaTime) { }
+        public virtual void OnUpdate(float deltaTime)
+        {
+            foreach (var i in ActionsNextFrame)
+                i();
+            ActionsNextFrame.Clear();
+        }
+
         public virtual void OnDraw() { }
         public virtual void OnTouched(TouchEvent te) { }
         public virtual void OnPaused() { }
@@ -17,5 +26,6 @@
         }
 
         public GameObjectList Parent { get; private set; }
+        protected List<Action> ActionsNextFrame { get; } = new List<Action>();
     }
 }

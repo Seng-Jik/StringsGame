@@ -55,6 +55,7 @@ namespace Strings.Game
 
         public override void OnUpdate(float time)
         {
+            base.OnUpdate(time);
             rotate += time * 90;
         }
 

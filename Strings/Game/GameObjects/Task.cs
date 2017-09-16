@@ -22,6 +22,7 @@ namespace Strings.Game.GameObjects
 
         public override void OnUpdate(float deltaTime)
         {
+            base.OnUpdate(deltaTime);
             time -= deltaTime;
             if (time <= 0)
             {

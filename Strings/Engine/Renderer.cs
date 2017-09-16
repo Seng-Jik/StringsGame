@@ -167,7 +167,18 @@ namespace Strings.Engine
             GL.VertexPointer(2, All.Float, 0, vArr);
             GL.ColorPointer(4, All.Float, 0, vCol);
             GL.DrawArrays(All.Lines, 0, 8 * vert.Length);
+        }
 
+        public static void DrawLines(Vector2[] linesPoint,float rot = 0,float scale = 1)
+        {
+            GL.Scale(scale, scale, 0);
+            GL.Rotate(rot, 0, 0, 1);
+           
+            GL.VertexPointer(2, All.Float, 0, linesPoint);
+            GL.DisableClientState(All.ColorArray);
+            GL.DrawArrays(All.Lines, 0, linesPoint.Length);
+            GL.EnableClientState(All.ColorArray);
+            GL.LoadIdentity();
         }
 
         static List<float> v = new List<float>();

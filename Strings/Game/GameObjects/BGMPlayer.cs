@@ -23,7 +23,7 @@ namespace Strings.Game.GameObjects
                     player.Stop();
                     Died = true;
                     Volume.Kill();
-                },3));
+                }, 3));
 
             Volume.Lerp(3, 0);
 
@@ -37,6 +37,7 @@ namespace Strings.Game.GameObjects
 
         public override void OnUpdate(float deltaTime)
         {
+            base.OnUpdate(deltaTime);
             IsBeatFrame = false;
             player.SetVolume(Volume.Value, Volume.Value);
         }

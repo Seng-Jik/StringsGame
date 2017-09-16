@@ -22,6 +22,7 @@ namespace Strings.Engine
 
         public override void OnUpdate(float time)
         {
+            base.OnUpdate(time);
             for (int i = 0; i < objList.Count; ++i)
                 objList[i].OnUpdate(time);
 
@@ -54,7 +55,8 @@ namespace Strings.Engine
         public void Attach(GameObject obj)
         {
             obj.OnAttached(this);
-            objList.Add(obj);
+            ActionsNextFrame.Add( () =>
+                 objList.Add(obj));
         }
 
         public bool KillSelfWhenEmpty { get; protected set; } = false;

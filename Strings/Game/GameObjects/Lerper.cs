@@ -25,6 +25,11 @@ namespace Strings.Game.GameObjects
             }
         }
 
+        public override bool Died
+        {
+            get => base.Died && !lerping;
+        }
+
         public void Lerp(float time,float val)
         {
             lerping = true;
