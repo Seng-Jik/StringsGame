@@ -28,15 +28,21 @@ namespace Strings.Game.TitleScene
                 p[i] *= 200.0F;
             }
 
-            List<Vector2> mesh = new List<Vector2>();
+            List<Vector2> mesh = new List<Vector2>
+            {
+                p[0],
+                p[2],
+                p[3],
+                p[0],
 
-            mesh.Add(p[0]); mesh.Add(p[2]);
-            mesh.Add(p[3]); mesh.Add(p[0]);
+                p[4],
+                p[1],
+                p[1],
+                p[3],
 
-            mesh.Add(p[4]); mesh.Add(p[1]);
-            mesh.Add(p[1]); mesh.Add(p[3]);
-
-            mesh.Add(p[2]); mesh.Add(p[4]);
+                p[2],
+                p[4]
+            };
 
             starMesh = mesh.ToArray();
         }

@@ -29,7 +29,7 @@ namespace Strings.Game.TitleScene
         {
             base.OnAttached(parent);
 
-            var bgm = new GameObjects.BGMPlayer(Resource.Raw.bwv846, 0);
+            var bgm = new BGMPlayer(Resource.Raw.bwv846, 0);
             Attach(bgm);
             Attach(new StarDrawer());
         }
