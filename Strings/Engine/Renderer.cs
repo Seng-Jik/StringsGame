@@ -229,6 +229,18 @@ namespace Strings.Engine
             GL.Disable(All.Texture2D);
         }
 
+        public static Vector2 GetImageSize(int imgID)
+        {
+            var success = imageDic.TryGetValue(imgID, out Image i);
+            if (!success)
+            {
+                LoadImage(imgID);
+                imageDic.TryGetValue(imgID, out i);
+            }
+
+            return i.Size;
+        }
+
         public static void ReloadResource()
         {
             imageDic.Clear();

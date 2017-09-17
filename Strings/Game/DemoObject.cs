@@ -17,11 +17,11 @@ namespace Strings.Game
         {
             base.OnAttached(parent);
 
-            parent.Attach(
+            /*parent.Attach(
                 new GameObjects.Task(
                     () => parent.Attach(new GameObjects.BGMPlayer(Resource.Raw.bwv846, 120))
                     )
-                );
+                );*/
         }
 
         public override void Kill()
@@ -32,7 +32,7 @@ namespace Strings.Game
         public override void OnDraw()
         {
 
-            Box2[] b = {
+            /*Box2[] b = {
                 new Box2(-300, -300, -100, -100),
                 new Box2(100,-300,300,-100)
             };
@@ -50,7 +50,15 @@ namespace Strings.Game
             b[0].Top += 400;b[0].Bottom += 400;
             b[1].Top += 400;b[1].Bottom += 400;
             Renderer.FillBoxes(b,col);
-            Renderer.DrawBoxes(b);
+            Renderer.DrawBoxes(b);*/
+
+            foreach(var i in fingers)
+            {
+                Vector2 lt = new Vector2(i.Value.X - 10, i.Value.Y - 10);
+                Vector2 rd = new Vector2(i.Value.X + 10, i.Value.Y + 10);
+                Box2[] bo = { new Box2(lt, rd) };
+                Renderer.DrawBoxes(bo);
+            }
         }
 
         public override void OnUpdate(float time)

@@ -67,16 +67,31 @@ namespace Strings
 			public const int bwv846 = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int kizuna = 2130903042;
+			public const int disc = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int start = 2130903043;
+			public const int kizuna = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int title = 2130903044;
+			public const int last = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int wind = 2130903045;
+			public const int next = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int ok = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int press = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int start = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int title = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int wind = 2130903050;
 			
 			static Raw()
 			{

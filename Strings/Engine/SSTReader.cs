@@ -23,23 +23,6 @@ namespace Strings.Engine
         {
             byte compressMode = sst.ReadByte();
 
-            switch (compressMode)
-            {
-                case 0:
-                    cmode = SSTCompressMode.RGBA;
-                    break;
-                case 10:
-                    cmode = SSTCompressMode.DXT1;
-                    break;
-                case 11:
-                    cmode = SSTCompressMode.DXT3;
-                    break;
-                case 12:
-                    cmode = SSTCompressMode.DXT5;
-                    break;
-                default:
-                    throw new Exception("Bad sst texture.");
-            }
 
             UInt16 rectSize = sst.ReadUInt16();
 
@@ -88,6 +71,5 @@ namespace Strings.Engine
         private byte[] data;
         private float width, height;
         OpenTK.Box2[] rects;
-        SSTCompressMode cmode;
     }
 }

@@ -64,11 +64,13 @@
     <Compile Include="Engine\Renderer.cs" />
     <Compile Include="Engine\SSTReader.cs" />
     <Compile Include="Engine\TouchEvent.cs" />
+    <Compile Include="Engine\Utils.cs" />
     <Compile Include="Game\DemoObject.cs" />
     <Compile Include="Game\GameObjects\BGMPlayer.cs" />
     <Compile Include="Game\GameObjects\Lerper.cs" />
     <Compile Include="Game\GameObjects\Sprite.cs" />
     <Compile Include="Game\GameObjects\Task.cs" />
+    <Compile Include="Game\SongSelectScene\Button.cs" />
     <Compile Include="Game\SongSelectScene\SongSelectScene.cs" />
     <Compile Include="Game\Startup.cs" />
     <Compile Include="Game\TitleScene\StarDrawer.cs" />
@@ -84,6 +86,14 @@
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\raw\start.sst" />
     <AndroidResource Include="Resources\raw\title.sst" />
+    <AndroidResource Include="Resources\raw\disc.sst" />
+    <AndroidResource Include="Resources\raw\ok.sst" />
+    <AndroidResource Include="Resources\raw\press.sst" />
+    <AndroidResource Include="Resources\raw\last.sst" />
+    <AndroidResource Include="Resources\raw\next.sst" />
+    <AndroidResource Include="Resources\raw\kizuna.sst" />
+    <AndroidResource Include="Resources\raw\wind.sst" />
+    <AndroidResource Include="Resources\raw\bwv.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

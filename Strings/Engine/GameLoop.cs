@@ -39,6 +39,9 @@ namespace Strings.Engine
             screenPos.Y /= halfHeight;
             screenPos -= new Vector2(1, 1);
             screenPos.X *= -aspec;
+
+            screenPos.X *= 640;
+            screenPos.Y *= 640;
             return screenPos;
         }
 
