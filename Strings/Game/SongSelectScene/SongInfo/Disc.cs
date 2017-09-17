@@ -30,6 +30,14 @@ namespace Strings.Game.SongSelectScene.SongInfo
             bgm.Player.SeekTo(40 * 1000);
             bgm.Player.Looping = true;
             bgm.Volume.Lerp(0.5f, 1);
+
+            info = new Sprite(song.InfoID)
+            {
+                KillWhenAlphaIs0 = true
+            };
+            info.Zoom.Value = 1.3F;
+            info.PosY.Value = -200;
+            info.PosX.Func = x => (float)Math.Sin(System.Math.PI / 2 * x);
         }
 
         public override void OnAttached(GameObjectList parent)
@@ -41,7 +49,14 @@ namespace Strings.Game.SongSelectScene.SongInfo
             disc.Alpha.Lerp(1, 1);
             disc.PosX.Func = x => (float)Math.Sin(System.Math.PI / 2 * x);
 
-            parent.Attach(new Task(() => disc.PosX.Lerp(0.5F, 400), 0.5f));
+            
+            info.PosX.Value = -500;
+            info.PosX.Lerp(0.5f, -370);
+            info.Alpha.Value = 0;
+            info.Alpha.Lerp(0.5f, 1);
+
+            parent.Attach(new Task(() => disc.PosX.Lerp(0.5F, 450), 0.5f));
+            parent.Attach(new Task(() => parent.Attach(info) , 0.5f));
 
             parent.Attach(bgm);
 
@@ -91,11 +106,31 @@ namespace Strings.Game.SongSelectScene.SongInfo
             bgm.Volume.Lerp(0.5f, 1);
 
             Parent.Attach(bgm);
+
+            info.Alpha.Lerp(0.5f, 0);
+            info.PosX.Lerp(0.5f, 0);
+
+            info.Kill();
+
+            info = new Sprite(song.InfoID);
+            info.PosX.Func = x => (float)Math.Sin(System.Math.PI / 2 * x);
+            info.PosY.Value = -200;
+            Parent.Attach(info);
+            info.PosX.Value = -500;
+            info.PosX.Lerp(0.5f, -370);
+            info.Alpha.Value = 0;
+            info.Alpha.Lerp(0.5f, 1);
+            info.Zoom.Value = 1.3F;
+            info.KillWhenAlphaIs0 = true;
+
         }
 
         public void EntryEffectKill()
         {
             bgm.Kill();
+            info.Alpha.Lerp(0.25f, 0);
+            info.KillWhenAlphaIs0 = true;
+            info.Kill();
 
             Task kill = new Task(() =>
             {
@@ -117,6 +152,7 @@ namespace Strings.Game.SongSelectScene.SongInfo
         }
 
         Sprite disc;
+        Sprite info;
         BGMPlayer bgm;
     }
 }

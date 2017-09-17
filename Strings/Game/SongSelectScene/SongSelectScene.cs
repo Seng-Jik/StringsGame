@@ -40,7 +40,7 @@ namespace Strings.Game.SongSelectScene
                 last.Alpha.Value = 0;
                 last.Alpha.Lerp(1, 1);
                 last.PosY.Func = func;
-                last.PosY.Lerp(0.5F, 120);
+                last.PosY.Lerp(0.5F, 220);
                 Attach(last);
             };
 
@@ -51,7 +51,7 @@ namespace Strings.Game.SongSelectScene
                 next.Alpha.Value = 0;
                 next.Alpha.Lerp(1, 1);
                 next.PosY.Func = func;
-                next.PosY.Lerp(0.5F, 120);
+                next.PosY.Lerp(0.5F, 220);
                 Attach(next);
             };
 
@@ -62,7 +62,7 @@ namespace Strings.Game.SongSelectScene
                 ok.Alpha.Value = 0;
                 ok.Alpha.Lerp(1, 1);
                 ok.PosY.Func = func;
-                ok.PosY.Lerp(0.5F, 120);
+                ok.PosY.Lerp(0.5F, 220);
                 Attach(ok);
             };
 
