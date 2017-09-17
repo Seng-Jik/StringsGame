@@ -71,6 +71,7 @@
     <Compile Include="Game\GameObjects\Task.cs" />
     <Compile Include="Game\Startup.cs" />
     <Compile Include="Game\TitleScene\StarDrawer.cs" />
+    <Compile Include="Game\TitleScene\Start.cs" />
     <Compile Include="Game\TitleScene\TitleScene.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +82,7 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\raw\start.sst" />
+    <AndroidResource Include="Resources\raw\title.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

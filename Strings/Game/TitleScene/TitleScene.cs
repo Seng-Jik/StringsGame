@@ -32,7 +32,15 @@ namespace Strings.Game.TitleScene
             var bgm = new BGMPlayer(Resource.Raw.bwv846, 0);
             Attach(bgm);
             Attach(new StarDrawer());
-            Attach(new Sprite(Resource.Raw.start));
+
+            title = new Sprite(Resource.Raw.title);
+            title.Alpha.Value = 0;
+            title.Alpha.Lerp(1.5f, 1);
+            title.Zoom.Value = 0.5f;
+            title.Zoom.Lerp(1.5f, 2);
+            title.KillWhenAlphaIs0 = true;
+            Attach(title);
+            Attach(new Start());
         }
 
         public override void OnTouched(TouchEvent te)
@@ -43,11 +51,15 @@ namespace Strings.Game.TitleScene
             {
                 touched = true;
 
+                title.Alpha.Lerp(1, 0);
+                title.Zoom.Lerp(1, 4);
                 Parent.Attach(new Task(() => Parent.Attach(new DemoObject()),5));
+                
                 Kill();
             }
         }
 
         bool touched = false;
+        Sprite title;
     }
 }

@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Strings.Engine;
+using OpenTK;
 
 namespace Strings.Game.GameObjects
 {
@@ -25,6 +26,9 @@ namespace Strings.Game.GameObjects
         public Sprite(int imageID)
         {
             this.imageID = imageID;
+
+            Zoom.Value = 1;
+            Alpha.Value = 1;
         }
 
         public override void OnAttached(GameObjectList parent)
@@ -34,6 +38,8 @@ namespace Strings.Game.GameObjects
             parent.Attach(PosX);
             parent.Attach(PosY);
             parent.Attach(Zoom);
+            Zoom.Func = x => (float)Math.Sqrt(1 - (x - 1) * (x - 1));
+            Alpha.Func = Zoom.Func;
         }
 
         public override void Kill()
@@ -48,8 +54,19 @@ namespace Strings.Game.GameObjects
         public override void OnDraw()
         {
             base.OnDraw();
-            Renderer.DrawImage(imageID, new OpenTK.Vector2(0, 0));
+            Renderer.DrawImage(
+                imageID,
+                new Vector2(PosX.Value, PosY.Value),
+                new Vector4(1,1,1,Alpha.Value),Zoom.Value
+                );
 
         }
+
+        public override bool Died
+        {
+            get => KillWhenAlphaIs0 ? base.Died && Alpha.Value <= 0: base.Died;
+        }
+
+        public bool KillWhenAlphaIs0 { get; set; } = false;
     }
 }

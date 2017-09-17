@@ -181,24 +181,25 @@ namespace Strings.Engine
             GL.LoadIdentity();
         }
 
-        public static void DrawImage(int imageID,Vector2 pos,float zoom = 1)
+        public static void DrawImage(int imageID,Vector2 pos, Vector4 color, float zoom = 1)
         {
             GL.Enable(All.Texture2D);
             GL.EnableClientState(All.TextureCoordArray);
-            GL.DisableClientState(All.ColorArray);
             GL.Translate(pos.X, pos.Y, 0);
             GL.Enable(All.Blend);
 
+            GL.DisableClientState(All.ColorArray);
+
             GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);
 
-            Image i;
-            var success = imageDic.TryGetValue(imageID, out i);
+            var success = imageDic.TryGetValue(imageID, out Image i);
             if (!success)
             {
                 LoadImage(imageID);
                 imageDic.TryGetValue(imageID, out i);
             }
             i.Size /= 2;
+            i.Size *= zoom;
 
             GL.BindTexture(All.Texture2D, i.TexHandle);
             Vector2[] p =
@@ -212,14 +213,18 @@ namespace Strings.Engine
                 new Vector2(pos.X - i.Size.X,pos.Y + i.Size.Y)
             };
 
+            //Vector4[] col = { color, color, color, color, color, color };
+            GL.Color4(color.X, color.Y, color.Z, color.W);
+
             GL.TexCoordPointer(2, All.Float, 0, texCoord);
             GL.VertexPointer(2, All.Float, 0, p);
+            //GL.ColorPointer(4, All.ColorArray, 0, col);
             GL.DrawArrays(All.Triangles, 0, 6);
 
+            GL.EnableClientState(All.ColorArray);
 
             GL.LoadIdentity();
             GL.Disable(All.Blend);
-            GL.EnableClientState(All.ColorArray);
             GL.DisableClientState(All.TextureCoordArray);
             GL.Disable(All.Texture2D);
         }

@@ -39,7 +39,7 @@ namespace Strings.Game.GameObjects
             begin = Value;
         }
 
-        Func<float, float> Func { get; set; } = x => x;
+        public Func<float, float> Func { get; set; } = x => x;
 
         public override void OnUpdate(float time)
         {

@@ -66,6 +66,9 @@ namespace Strings
 			// aapt resource value: 0x7f030001
 			public const int start = 2130903041;
 			
+			// aapt resource value: 0x7f030002
+			public const int title = 2130903042;
+			
 			static Raw()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
