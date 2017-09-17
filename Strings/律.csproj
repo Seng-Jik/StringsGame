@@ -69,6 +69,7 @@
     <Compile Include="Game\GameObjects\Lerper.cs" />
     <Compile Include="Game\GameObjects\Sprite.cs" />
     <Compile Include="Game\GameObjects\Task.cs" />
+    <Compile Include="Game\SongSelectScene\SongSelectScene.cs" />
     <Compile Include="Game\Startup.cs" />
     <Compile Include="Game\TitleScene\StarDrawer.cs" />
     <Compile Include="Game\TitleScene\Start.cs" />

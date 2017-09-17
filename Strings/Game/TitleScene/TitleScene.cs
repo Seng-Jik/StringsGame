@@ -53,7 +53,7 @@ namespace Strings.Game.TitleScene
 
                 title.Alpha.Lerp(1, 0);
                 title.Zoom.Lerp(1, 4);
-                Parent.Attach(new Task(() => Parent.Attach(new DemoObject()),5));
+                Parent.Attach(new Task(() => Parent.Attach(new SongSelectScene.SongSelectScene()),0.25F));
                 
                 Kill();
             }
