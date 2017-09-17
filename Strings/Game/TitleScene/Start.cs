@@ -18,7 +18,7 @@ namespace Strings.Game.TitleScene
     {
         public Start() : base(Resource.Raw.start)
         {
-            PosY.Value = 200.0F;
+            PosY.Value = 400.0F;
             KillWhenAlphaIs0 = true;
         }
 

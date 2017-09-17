@@ -21,6 +21,8 @@ namespace Strings.Game
 
             //Game Startup
             parent.Attach(new TitleScene.TitleScene());
+            //parent.Attach(new SongSelectScene.SongSelectScene(2));
+            //parent.Attach(new DemoObject());
             Kill();
         }
     }

@@ -71,6 +71,8 @@
     <Compile Include="Game\GameObjects\Sprite.cs" />
     <Compile Include="Game\GameObjects\Task.cs" />
     <Compile Include="Game\SongSelectScene\Button.cs" />
+    <Compile Include="Game\SongSelectScene\SongInfo\Disc.cs" />
+    <Compile Include="Game\SongSelectScene\SongInfo\SongInfo.cs" />
     <Compile Include="Game\SongSelectScene\SongSelectScene.cs" />
     <Compile Include="Game\Startup.cs" />
     <Compile Include="Game\TitleScene\StarDrawer.cs" />
@@ -86,14 +88,16 @@
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\raw\start.sst" />
     <AndroidResource Include="Resources\raw\title.sst" />
-    <AndroidResource Include="Resources\raw\disc.sst" />
     <AndroidResource Include="Resources\raw\ok.sst" />
     <AndroidResource Include="Resources\raw\press.sst" />
     <AndroidResource Include="Resources\raw\last.sst" />
     <AndroidResource Include="Resources\raw\next.sst" />
-    <AndroidResource Include="Resources\raw\kizuna.sst" />
-    <AndroidResource Include="Resources\raw\wind.sst" />
-    <AndroidResource Include="Resources\raw\bwv.sst" />
+    <AndroidResource Include="Resources\raw\coverkizuna.sst" />
+    <AndroidResource Include="Resources\raw\coverwind.sst" />
+    <AndroidResource Include="Resources\raw\coverbwv.sst" />
+    <AndroidResource Include="Resources\raw\ifowind.sst" />
+    <AndroidResource Include="Resources\raw\ifobwv.sst" />
+    <AndroidResource Include="Resources\raw\ifokizuna.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -114,7 +118,7 @@
     <AndroidResource Include="Resources\raw\wind.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\raw\bwv1056.mp3" />
+    <AndroidResource Include="Resources\raw\bwv578.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

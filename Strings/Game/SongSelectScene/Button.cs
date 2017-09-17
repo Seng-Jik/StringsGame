@@ -64,10 +64,13 @@ namespace Strings.Game.SongSelectScene
         public override void OnTouched(TouchEvent te)
         {
             base.OnTouched(te);
+
+            if (!Enabled) return;
+
             if(te.Action == TouchEvent.TouchAction.Down)
             {
                 var s = size * btnSp.Zoom.Value;
-                var lt = new Vector2(PosX.Value * 2, PosY.Value) - new Vector2(s.X / 2, 0);
+                var lt = new Vector2(PosX.Value, PosY.Value) - new Vector2(s.X / 2, s.Y / 2);
                 var rb = lt + s;
                 var clickBox = new Box2(lt, rb);
 
@@ -80,7 +83,7 @@ namespace Strings.Game.SongSelectScene
             else if(te.Action == TouchEvent.TouchAction.Up)
             {
                 var s = size * btnSp.Zoom.Value;
-                var lt = new Vector2(PosX.Value * 2, PosY.Value) - new Vector2(s.X / 2, 0);
+                var lt = new Vector2(PosX.Value, PosY.Value) - new Vector2(s.X / 2, s.Y / 2);
                 var rb = lt + s;
                 var clickBox = new Box2(lt, rb);
 
@@ -104,7 +107,7 @@ namespace Strings.Game.SongSelectScene
             base.OnDraw();
 
             var s = size * btnSp.Zoom.Value;
-            var lt = new Vector2(PosX.Value * 2, PosY.Value) - new Vector2(s.X / 2,0);
+            var lt = new Vector2(PosX.Value, PosY.Value) - new Vector2(s.X / 2, s.Y / 2);
             var rb = lt + s;
             Box2[] b = { new Box2(lt, rb) };
             Renderer.DrawBoxes(b);
@@ -113,6 +116,8 @@ namespace Strings.Game.SongSelectScene
         public Lerper PosX { get => btnSp.PosX; }
         public Lerper PosY { get => btnSp.PosY; }
         public Lerper Alpha { get => btnSp.Alpha;  }
+
+        public bool Enabled = true;
 
         Sprite btnSp;
         Sprite btnDown;

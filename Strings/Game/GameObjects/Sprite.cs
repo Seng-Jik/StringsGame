@@ -57,7 +57,8 @@ namespace Strings.Game.GameObjects
             Renderer.DrawImage(
                 imageID,
                 new Vector2(PosX.Value, PosY.Value),
-                new Vector4(1,1,1,Alpha.Value),Zoom.Value
+                new Vector4(1,1,1,Alpha.Value),Zoom.Value,
+                Rotate
                 );
 
         }
@@ -68,5 +69,7 @@ namespace Strings.Game.GameObjects
         }
 
         public bool KillWhenAlphaIs0 { get; set; } = false;
+
+        public float Rotate = 0;
     }
 }

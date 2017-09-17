@@ -20,10 +20,10 @@ namespace Strings.Game.GameObjects
             Parent.Attach(new Task(
                 () =>
                 {
-                    player.Stop();
+                    Player.Stop();
                     Died = true;
                     Volume.Kill();
-                }, 3));
+                }, KillFadeOutTime));
 
             Volume.Lerp(3, 0);
 
@@ -39,29 +39,31 @@ namespace Strings.Game.GameObjects
         {
             base.OnUpdate(deltaTime);
             IsBeatFrame = false;
-            player.SetVolume(Volume.Value, Volume.Value);
+            Player.SetVolume(Volume.Value, Volume.Value);
         }
 
-        public BGMPlayer(int bgmResID,float bpm)
+        public BGMPlayer(int bgmResID)
         {
-            Volume.Value = 1.0f;
-            player = Android.Media.MediaPlayer.Create(GameLoop.Context, bgmResID);
-            player.Start();
+            Player = Android.Media.MediaPlayer.Create(GameLoop.Context, bgmResID);
+            Player.SetVolume(0, 0);
+            Player.Start();
         }
 
         public override void OnPaused()
         {
-            player.Pause();
+            Player.Pause();
         }
 
         public override void OnResume()
         {
-            player.Start();
+            Player.Start();
         }
 
         public bool IsBeatFrame { get; private set; }
 
-        Android.Media.MediaPlayer player;
+        public float KillFadeOutTime { get; set; } = 3.0f;
+
+        public Android.Media.MediaPlayer Player { get; }
         public Lerper Volume { get; private set; } = new Lerper();
     }
 }

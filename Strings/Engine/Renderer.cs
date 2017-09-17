@@ -181,11 +181,14 @@ namespace Strings.Engine
             GL.LoadIdentity();
         }
 
-        public static void DrawImage(int imageID,Vector2 pos, Vector4 color, float zoom = 1)
+        public static void DrawImage(int imageID,Vector2 pos, Vector4 color, float zoom = 1,float rot = 0)
         {
             GL.Enable(All.Texture2D);
             GL.EnableClientState(All.TextureCoordArray);
+            
             GL.Translate(pos.X, pos.Y, 0);
+            GL.Rotate(rot, 0, 0, 1);
+
             GL.Enable(All.Blend);
 
             GL.DisableClientState(All.ColorArray);
@@ -204,13 +207,13 @@ namespace Strings.Engine
             GL.BindTexture(All.Texture2D, i.TexHandle);
             Vector2[] p =
             {
-                pos - i.Size,
-                new Vector2(pos.X - i.Size.X,pos.Y + i.Size.Y),
-                new Vector2(pos.X + i.Size.X,pos.Y - i.Size.Y),
+                - i.Size,
+                new Vector2(- i.Size.X,i.Size.Y),
+                new Vector2(i.Size.X,- i.Size.Y),
 
-                new Vector2(pos.X + i.Size.X,pos.Y - i.Size.Y),
-                pos + i.Size,
-                new Vector2(pos.X - i.Size.X,pos.Y + i.Size.Y)
+                new Vector2(i.Size.X,- i.Size.Y),
+                i.Size,
+                new Vector2(-i.Size.X,i.Size.Y)
             };
 
             //Vector4[] col = { color, color, color, color, color, color };

@@ -29,7 +29,8 @@ namespace Strings.Game.TitleScene
         {
             base.OnAttached(parent);
 
-            var bgm = new BGMPlayer(Resource.Raw.bwv846, 0);
+            var bgm = new BGMPlayer(Resource.Raw.bwv846);
+            bgm.Volume.Value = 1.0F;
             Attach(bgm);
             Attach(new StarDrawer());
 
@@ -53,7 +54,7 @@ namespace Strings.Game.TitleScene
 
                 title.Alpha.Lerp(1, 0);
                 title.Zoom.Lerp(1, 4);
-                Parent.Attach(new Task(() => Parent.Attach(new SongSelectScene.SongSelectScene()),0.25F));
+                Parent.Attach(new Task(() => Parent.Attach(new SongSelectScene.SongSelectScene(0)),0.25F));
                 //Parent.Attach(new DemoObject());
                 Kill();
             }
