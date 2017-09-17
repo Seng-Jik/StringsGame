@@ -62,10 +62,12 @@
     <Compile Include="Engine\Platform\MainActivity.cs" />
     <Compile Include="Engine\Platform\GLView.cs" />
     <Compile Include="Engine\Renderer.cs" />
+    <Compile Include="Engine\SSTReader.cs" />
     <Compile Include="Engine\TouchEvent.cs" />
     <Compile Include="Game\DemoObject.cs" />
     <Compile Include="Game\GameObjects\BGMPlayer.cs" />
     <Compile Include="Game\GameObjects\Lerper.cs" />
+    <Compile Include="Game\GameObjects\Sprite.cs" />
     <Compile Include="Game\GameObjects\Task.cs" />
     <Compile Include="Game\Startup.cs" />
     <Compile Include="Game\TitleScene\StarDrawer.cs" />
@@ -78,19 +80,16 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\raw\start.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\bwv846.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\title.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\start.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />

@@ -27,8 +27,10 @@ namespace Strings.Engine.Platform
             Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
 
             // Create our OpenGL view, and display it
-            view = new GLView(this);
-            view.ContextRenderingApi = OpenTK.Graphics.GLVersion.ES1;
+            view = new GLView(this)
+            {
+                ContextRenderingApi = OpenTK.Graphics.GLVersion.ES1
+            };
             SetContentView(view);
 
             Android.Graphics.Rect r = new Android.Graphics.Rect();

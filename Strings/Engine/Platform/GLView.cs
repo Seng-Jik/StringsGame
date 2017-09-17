@@ -91,8 +91,8 @@ namespace Strings.Engine.Platform
                 Log.Verbose("GLCube", "Loading with default settings");
 
                 // if you don't call this, the context won't be created
-                base.CreateFrameBuffer();          
-
+                base.CreateFrameBuffer();
+                Renderer.ReloadResource();
                 return;
             }
             catch (Exception ex)
@@ -110,7 +110,7 @@ namespace Strings.Engine.Platform
 
                 // if you don't call this, the context won't be created
                 base.CreateFrameBuffer();
-
+                Renderer.ReloadResource();
                 return;
             }
             catch (Exception ex)

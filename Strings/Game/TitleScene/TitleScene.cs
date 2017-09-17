@@ -32,6 +32,7 @@ namespace Strings.Game.TitleScene
             var bgm = new BGMPlayer(Resource.Raw.bwv846, 0);
             Attach(bgm);
             Attach(new StarDrawer());
+            Attach(new Sprite(Resource.Raw.start));
         }
 
         public override void OnTouched(TouchEvent te)

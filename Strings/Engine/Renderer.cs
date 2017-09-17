@@ -181,6 +181,90 @@ namespace Strings.Engine
             GL.LoadIdentity();
         }
 
+        public static void DrawImage(int imageID,Vector2 pos,float zoom = 1)
+        {
+            GL.Enable(All.Texture2D);
+            GL.EnableClientState(All.TextureCoordArray);
+            GL.DisableClientState(All.ColorArray);
+            GL.Translate(pos.X, pos.Y, 0);
+            GL.Enable(All.Blend);
+
+            GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);
+
+            Image i;
+            var success = imageDic.TryGetValue(imageID, out i);
+            if (!success)
+            {
+                LoadImage(imageID);
+                imageDic.TryGetValue(imageID, out i);
+            }
+            i.Size /= 2;
+
+            GL.BindTexture(All.Texture2D, i.TexHandle);
+            Vector2[] p =
+            {
+                pos - i.Size,
+                new Vector2(pos.X - i.Size.X,pos.Y + i.Size.Y),
+                new Vector2(pos.X + i.Size.X,pos.Y - i.Size.Y),
+
+                new Vector2(pos.X + i.Size.X,pos.Y - i.Size.Y),
+                pos + i.Size,
+                new Vector2(pos.X - i.Size.X,pos.Y + i.Size.Y)
+            };
+
+            GL.TexCoordPointer(2, All.Float, 0, texCoord);
+            GL.VertexPointer(2, All.Float, 0, p);
+            GL.DrawArrays(All.Triangles, 0, 6);
+
+
+            GL.LoadIdentity();
+            GL.Disable(All.Blend);
+            GL.EnableClientState(All.ColorArray);
+            GL.DisableClientState(All.TextureCoordArray);
+            GL.Disable(All.Texture2D);
+        }
+
+        public static void ReloadResource()
+        {
+            imageDic.Clear();
+        }
+
+        private static void LoadImage(int res)
+        {
+            var stream = GameLoop.Context.Resources.OpenRawResource(res);
+            var sst = new SSTReader(new System.IO.BinaryReader(stream));
+
+            Image i;
+            GL.GenBuffers(1, out i.TexHandle);
+            var texSize = sst.Size;
+            i.Size = texSize;
+            GL.BindTexture(All.Texture2D,i.TexHandle);
+            GL.TexImage2D(All.Texture2D, 0, (int)All.Rgba, (int)texSize.X, (int)texSize.Y, 0, All.Rgba, All.UnsignedByte, sst.Data);
+            GL.TexParameter(All.Texture2D, All.TextureMagFilter, (int)All.Linear);
+            GL.TexParameter(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
+
+            imageDic[res] = i;
+        }
+
+        struct Image
+        {
+            public int TexHandle;
+            public Vector2 Size;
+        }
+
+        static Dictionary<int, Image> imageDic = new Dictionary<int, Image>();
         static List<float> v = new List<float>();
+
+
+        readonly static Vector2[] texCoord =
+         {
+                new Vector2(1,0),
+                new Vector2(1,1),
+                new Vector2(0,0),
+
+                new Vector2(0,0),
+                new Vector2(0,1),
+                new Vector2(1,1)
+        };
     }
 }
