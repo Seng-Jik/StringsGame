@@ -103,6 +103,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Game\GameScene\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>

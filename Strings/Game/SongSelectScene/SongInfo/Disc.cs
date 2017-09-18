@@ -139,6 +139,7 @@ namespace Strings.Game.SongSelectScene.SongInfo
                 disc.Kill();
             },2.1f);
 
+            disc.PosX.Func = p => -p * p + 2 * p;
             disc.PosX.Lerp(1, 0);
 
             Task fadeOut = new Task(() =>
