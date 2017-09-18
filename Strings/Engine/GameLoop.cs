@@ -76,7 +76,7 @@ namespace Strings.Engine
                 //Update and Draw
                 float ms = stopwatch.ElapsedMilliseconds;
                 if (ms > 96) ms = 16;
-                Root.OnUpdate(ms / 1000.0f);
+                Root.OnUpdate(ms / 1000.0);
                 while (!ActionQueue.IsEmpty)
                 {
                     System.Action task;

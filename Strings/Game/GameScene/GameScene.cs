@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Strings.Engine;
 using Strings.Game.GameObjects;
+using System.Diagnostics;
 
 namespace Strings.Game.GameScene
 {
@@ -22,6 +23,8 @@ namespace Strings.Game.GameScene
             bgm = new BGMPlayer(song.MusicID);
             map = new BeatmapEditor.BeatMap();
             map.LoadBeatmap(GameLoop.Context.Resources.OpenRawResource(song.NoteID));
+
+            TimeMs = new Stopwatch();
         }
 
         
@@ -32,22 +35,23 @@ namespace Strings.Game.GameScene
             Attach(bgm);
             Attach(sideLine);
             bgm.Volume.Value = 1;
+            TimeMs.Start();
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
-            base.OnUpdate(time);
+            base.OnUpdate(Time);
 
-            time += deltaTime;
+            Time += deltaTime;
             
             for(;now < map.Notes.Count;++now)
             {
-                if (map.Notes[now].Begin - time * 1000 > 1000)
-                    break;
-                else
+                if (TimeMs.ElapsedMilliseconds + 2000 > map.Notes[now].Begin)
                 {
-                    Attach(new ClickPoint(map.Notes[now].Hand, (int)map.Notes[now].ClickPos, map.Notes[now].Begin));
+                    var n = map.Notes[now];
+                    Attach(new ClickPoint(n.Hand, (int)n.ClickPos, n.Begin));
                 }
+                else break;
             }
         }
 
@@ -57,6 +61,8 @@ namespace Strings.Game.GameScene
 
         int now = 0;
 
-        float time = 0;
+        double Time { get; set; } = 0;
+        public Stopwatch TimeMs { get; } = new Stopwatch();
+
     }
 }

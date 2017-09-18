@@ -20,7 +20,7 @@ namespace Strings.Engine
             killed = true;
         }
 
-        public override void OnUpdate(float time)
+        public override void OnUpdate(double time)
         {
             base.OnUpdate(time);
             foreach(var i in objList)

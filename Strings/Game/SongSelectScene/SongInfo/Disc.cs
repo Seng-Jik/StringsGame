@@ -71,12 +71,12 @@ namespace Strings.Game.SongSelectScene.SongInfo
             disc.Kill();
         }
 
-        public override void OnUpdate(float time)
+        public override void OnUpdate(double time)
         {
             base.OnUpdate(time);
 
             if(disc != null)
-                disc.Rotate += time * 16;
+                disc.Rotate += (float)time * 16;
         }
 
         public void SetSong(int songID)

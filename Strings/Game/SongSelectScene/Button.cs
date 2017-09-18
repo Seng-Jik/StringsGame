@@ -54,7 +54,7 @@ namespace Strings.Game.SongSelectScene
             btnDown.Kill();
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
             btnDown.PosX.Value = PosX.Value;

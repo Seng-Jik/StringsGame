@@ -41,12 +41,12 @@ namespace Strings.Game.GameObjects
 
         public Func<float, float> Func { get; set; } = x => x;
 
-        public override void OnUpdate(float time)
+        public override void OnUpdate(double time)
         {
             if(lerping)
             {
                 nowTime += time;
-                float l = nowTime / allTime;
+                double l = nowTime / allTime;
                 if(l >= 1)
                 {
                     lerping = false;
@@ -54,13 +54,13 @@ namespace Strings.Game.GameObjects
                 }
                 else
                 {
-                    value = Func(l) * (target - begin) + begin;
+                    value = Func((float)l) * (target - begin) + begin;
                 }
             }
         }
 
         bool lerping = false;
-        float nowTime, allTime;
+        double nowTime, allTime;
         float begin;
         float target;
         float value;

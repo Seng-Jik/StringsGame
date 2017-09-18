@@ -7,3 +7,5 @@
 /Strings/bin
 /Strings/obj
 *.log
+/Mapper/bin
+/Mapper/obj

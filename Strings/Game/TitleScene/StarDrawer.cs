@@ -68,7 +68,7 @@ namespace Strings.Game.TitleScene
             starProcess.Lerp(5, 1);
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
             if (starProcess.Value >= 1) Kill();
@@ -82,7 +82,7 @@ namespace Strings.Game.TitleScene
             base.OnDraw();
             var starSize = (starProcess.Value + 1.0f) / 2.0f;
             if(starProcess.Value > 0)
-                Renderer.DrawLines(starMesh, rot, starSize * 24.0F);
+                Renderer.DrawLines(starMesh, (float)rot, starSize * 24.0F);
             else
             {
                 Vector2[] myMesh = (Vector2[])starMesh.Clone();
@@ -92,14 +92,14 @@ namespace Strings.Game.TitleScene
                     len *= 1-(-starProcess.Value);
                     myMesh[2 * i + 1] = myMesh[2 * i] + len;
                 }
-                Renderer.DrawLines(myMesh, rot, starSize * 24.0F);
+                Renderer.DrawLines(myMesh, (float)rot, starSize * 24.0F);
             }
         }
 
         bool buildNewStar = true;
         Lerper starProcess = new Lerper();
 
-        float rot = 0;
+        double rot = 0;
 
         static Vector2[] starMesh;
     }

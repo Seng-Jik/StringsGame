@@ -5,7 +5,7 @@ namespace Strings.Engine
 {
     public abstract class GameObject
     {
-        public virtual void OnUpdate(float deltaTime)
+        public virtual void OnUpdate(double deltaTime)
         {
             foreach (var i in ActionsNextFrame)
                 i();

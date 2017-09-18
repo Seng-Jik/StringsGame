@@ -35,7 +35,7 @@ namespace Strings.Game.GameObjects
             parent.Attach(Volume);
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
             IsBeatFrame = false;

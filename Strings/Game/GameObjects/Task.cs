@@ -20,7 +20,7 @@ namespace Strings.Game.GameObjects
             this.task = task;
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
             time -= deltaTime;
@@ -31,7 +31,7 @@ namespace Strings.Game.GameObjects
             }
         }
 
-        float time;
+        double time;
         Action task;
     }
 }

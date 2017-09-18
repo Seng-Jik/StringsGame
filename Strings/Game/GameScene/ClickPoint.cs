@@ -16,7 +16,7 @@ namespace Strings.Game.GameScene
 {
     class ClickPoint : GameObject
     {
-        public ClickPoint(BeatmapEditor.BeatMap.Note.HandEnum hand,int clickPos, uint ms)
+        public ClickPoint(BeatmapEditor.BeatMap.Note.HandEnum hand,int clickPos,float ms)
         {
             this.ms = ms;
             handMul = hand == BeatmapEditor.BeatMap.Note.HandEnum.Left ? -1 : 1;
@@ -45,8 +45,8 @@ namespace Strings.Game.GameScene
         {
             base.OnDraw();
 
-            float progress = ms / 1000.0f;
-            float x = progress * 800 * handMul;
+            double progress = 1 - ((ms - ((GameScene)Parent).TimeMs.ElapsedMilliseconds) / 2000.0f);
+            float x = (float)progress * 800 * handMul;
 
             line[0] = new Vector2(x, heightTop);
             line[1] = new Vector2(x, heightBottom);
@@ -54,9 +54,17 @@ namespace Strings.Game.GameScene
             Renderer.DrawLines(line);
         }
 
+        public override void OnUpdate(double deltaTime)
+        {
+            base.OnUpdate(deltaTime);
+
+            if (((GameScene)Parent).TimeMs.ElapsedMilliseconds > ms)
+                Kill();
+        }
+
         Vector2[] line = new Vector2[2];
         float heightTop, heightBottom;
-        uint ms;
+        readonly float ms;
         int handMul;
     }
 }

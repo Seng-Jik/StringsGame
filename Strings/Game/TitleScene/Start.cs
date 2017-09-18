@@ -30,7 +30,7 @@ namespace Strings.Game.TitleScene
             mainAlpha.Kill();
         }
 
-        public override void OnUpdate(float deltaTime)
+        public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
 
@@ -49,6 +49,6 @@ namespace Strings.Game.TitleScene
 
         Lerper mainAlpha = new Lerper();
 
-        float time = 0;
+        double time = 0;
     }
 }

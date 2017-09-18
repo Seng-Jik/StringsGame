@@ -61,7 +61,7 @@ namespace Strings.Game
             }
         }
 
-        public override void OnUpdate(float time)
+        public override void OnUpdate(double time)
         {
             base.OnUpdate(time);
             rotate += time * 90;
@@ -93,7 +93,7 @@ namespace Strings.Game
             Log.Debug("Touch Pos", te.Pos.ToString());
         }
 
-        float rotate = 0;
+        double rotate = 0;
         bool colored = false;
 
         Dictionary<int, Vector2> fingers = new Dictionary<int, Vector2>();
