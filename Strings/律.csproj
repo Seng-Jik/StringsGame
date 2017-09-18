@@ -70,6 +70,10 @@
     <Compile Include="Game\GameObjects\Lerper.cs" />
     <Compile Include="Game\GameObjects\Sprite.cs" />
     <Compile Include="Game\GameObjects\Task.cs" />
+    <Compile Include="Engine\BeatMap.cs" />
+    <Compile Include="Game\GameScene\ClickPoint.cs" />
+    <Compile Include="Game\GameScene\GameScene.cs" />
+    <Compile Include="Game\GameScene\SideLine.cs" />
     <Compile Include="Game\SongSelectScene\Button.cs" />
     <Compile Include="Game\SongSelectScene\SongInfo\Disc.cs" />
     <Compile Include="Game\SongSelectScene\SongInfo\SongInfo.cs" />
@@ -98,12 +102,15 @@
     <AndroidResource Include="Resources\raw\ifowind.sst" />
     <AndroidResource Include="Resources\raw\ifobwv.sst" />
     <AndroidResource Include="Resources\raw\ifokizuna.sst" />
+    <AndroidResource Include="Resources\raw\noteskizuna.csv">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\raw\notesbwv.csv" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game\GameScene\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\bwv578.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\noteswind.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

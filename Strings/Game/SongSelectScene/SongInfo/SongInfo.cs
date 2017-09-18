@@ -12,27 +12,36 @@ using Android.Widget;
 
 namespace Strings.Game.SongSelectScene.SongInfo
 {
-    struct Song
+    public struct Song
     {
-        public int MusicID, CoverID, InfoID;
+        public int MusicID, CoverID, InfoID, NoteID;
     }
 
-    static class SongInfo
+    public static class SongInfo
     {
         static SongInfo()
         {
-            songs.Add(new Song {
+            songs.Add(new Song
+            {
                 MusicID = Resource.Raw.kizuna,
                 CoverID = Resource.Raw.coverkizuna,
-                InfoID = Resource.Raw.ifokizuna});
-            songs.Add(new Song {
+                InfoID = Resource.Raw.ifokizuna,
+                NoteID = Resource.Raw.noteskizuna
+            });
+            songs.Add(new Song
+            {
                 MusicID = Resource.Raw.wind,
                 CoverID = Resource.Raw.coverwind,
-                InfoID = Resource.Raw.ifowind});
-            songs.Add(new Song {
+                InfoID = Resource.Raw.ifowind,
+                NoteID = Resource.Raw.noteswind
+            });
+            songs.Add(new Song
+            {
                 MusicID = Resource.Raw.bwv578,
                 CoverID = Resource.Raw.coverbwv,
-                InfoID = Resource.Raw.ifobwv});
+                InfoID = Resource.Raw.ifobwv,
+                NoteID = Resource.Raw.notesbwv
+            });
         }
 
         static List<Song> songs = new List<Song>();

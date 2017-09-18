@@ -116,6 +116,8 @@ namespace Strings.Game.SongSelectScene
 
             disc.EntryEffectKill();
             Attach(new Task(() => Kill(), 1.5f));
+
+            Parent.Attach(new Task(() => Parent.Attach(new GameScene.GameScene(curSel)), 2.0F));
         }
 
         void DisableButtonForHalfSec()
