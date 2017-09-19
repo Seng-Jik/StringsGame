@@ -106,6 +106,21 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\raw\notesbwv.csv" />
+    <AndroidResource Include="Resources\raw\perfect.sst" />
+    <AndroidResource Include="Resources\raw\good.sst" />
+    <AndroidResource Include="Resources\raw\great.sst" />
+    <AndroidResource Include="Resources\raw\miss.sst" />
+    <AndroidResource Include="Resources\raw\six.sst" />
+    <AndroidResource Include="Resources\raw\three.sst" />
+    <AndroidResource Include="Resources\raw\two.sst" />
+    <AndroidResource Include="Resources\raw\zero.sst" />
+    <AndroidResource Include="Resources\raw\eight.sst" />
+    <AndroidResource Include="Resources\raw\five.sst" />
+    <AndroidResource Include="Resources\raw\four.sst" />
+    <AndroidResource Include="Resources\raw\nine.sst" />
+    <AndroidResource Include="Resources\raw\one.sst" />
+    <AndroidResource Include="Resources\raw\perc.sst" />
+    <AndroidResource Include="Resources\raw\seven.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -51,17 +51,55 @@ namespace Strings.Game.GameScene
             line[0] = new Vector2(x, heightTop);
             line[1] = new Vector2(x, heightBottom);
 
-            Renderer.DrawLines(line);
+            if(render)
+               Renderer.DrawLines(line);
         }
 
         public override void OnUpdate(double deltaTime)
         {
             base.OnUpdate(deltaTime);
 
+
             if (((GameScene)Parent).TimeMs.ElapsedMilliseconds > ms)
-                Kill();
+            {
+                render = false;
+            }
+
+            if (((GameScene)Parent).TimeMs.ElapsedMilliseconds > ms + 200)
+            {
+                (Parent as GameScene).NoteClicked(GameScene.NoteClickType.Miss, handMul);
+                Died = true;
+            }
         }
 
+        public override void OnTouched(TouchEvent te)
+        {
+            base.OnTouched(te);
+
+            if(te.Action == TouchEvent.TouchAction.Down)
+            {
+                if (handMul > 0 && te.Pos.X < 0) return;
+                else if (handMul < 0 && te.Pos.X > 0) return;
+                    
+                if (te.Pos.Y <= heightTop && te.Pos.Y >= heightBottom)
+                {
+
+                    var timeOffset = Math.Abs(((GameScene)Parent).TimeMs.ElapsedMilliseconds - ms);
+                    if (timeOffset <= 200)
+                    {
+                        var type = GameScene.NoteClickType.Good;
+                        if (timeOffset <= 100)
+                            type = GameScene.NoteClickType.Perfect;
+                        else if (timeOffset <= 150)
+                            type = GameScene.NoteClickType.Great;
+                        (Parent as GameScene).NoteClicked(type, handMul);
+                        Kill();
+                    }
+                }
+            }
+        }
+
+        bool render = true;
         Vector2[] line = new Vector2[2];
         float heightTop, heightBottom;
         readonly float ms;

@@ -30,7 +30,7 @@ namespace BeatmapEditor
                 {
                     Type = (Note.TypeEnum)int.Parse(noteInfo[0]),
                     Hand = (Note.HandEnum)int.Parse(noteInfo[1]),
-                    Begin = uint.Parse(noteInfo[2]),
+                    Begin = uint.Parse(noteInfo[2]) + 75,
                     Arg = uint.Parse(noteInfo[3]),
                     ClickPos = uint.Parse(noteInfo[4])
                 };
@@ -39,11 +39,6 @@ namespace BeatmapEditor
             }
 
             SortNotes();
-        }
-
-        public void SaveBeatmap(Stream beatmap)
-        {
-            throw new Exception("Error");
         }
 
         public void SortNotes()

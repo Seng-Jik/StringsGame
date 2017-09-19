@@ -46,7 +46,13 @@ namespace Strings.Game.GameScene
         {
             base.Kill();
 
+            lineProgress.Lerp(0.5f, 1);
             lineProgress.Kill();
+        }
+
+        public override bool Died
+        {
+            get => base.Died && lineProgress.Died;
         }
 
         Lerper lineProgress = new Lerper();
