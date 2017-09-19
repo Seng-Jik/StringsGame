@@ -41,7 +41,7 @@ namespace Mapper
                 Note t = new Note()
                 {
                     Hand = k == 'A' || k == 'S' || k == 'D' || k == 'F' ? 0 : 1,
-                    ms = s.ElapsedMilliseconds
+                    ms = s.ElapsedMilliseconds - 75
                 };
 
                 if (k == 'A' || k == 'J') t.ClickPos = 0;

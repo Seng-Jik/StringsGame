@@ -20,8 +20,8 @@ namespace Strings.Game
             base.OnAttached(parent);
 
             //Game Startup
-            //parent.Attach(new TitleScene.TitleScene());
-            parent.Attach(new GameScene.GameScene(0));
+            parent.Attach(new TitleScene.TitleScene());
+            //parent.Attach(new GameScene.GameScene(1));
             //parent.Attach(new SongSelectScene.SongSelectScene(2));
             //parent.Attach(new DemoObject());
             Kill();
