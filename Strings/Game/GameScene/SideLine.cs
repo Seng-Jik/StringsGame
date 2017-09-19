@@ -46,7 +46,7 @@ namespace Strings.Game.GameScene
         {
             base.Kill();
 
-            lineProgress.Lerp(0.5f, 1);
+            lineProgress.Lerp(0.5f, 0);
             lineProgress.Kill();
         }
 

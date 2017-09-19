@@ -74,6 +74,9 @@
     <Compile Include="Game\GameScene\ClickPoint.cs" />
     <Compile Include="Game\GameScene\GameScene.cs" />
     <Compile Include="Game\GameScene\SideLine.cs" />
+    <Compile Include="Game\ScoreScene\ScoreGroup.cs" />
+    <Compile Include="Game\ScoreScene\ScoreInfo.cs" />
+    <Compile Include="Game\ScoreScene\ScoreScene.cs" />
     <Compile Include="Game\SongSelectScene\Button.cs" />
     <Compile Include="Game\SongSelectScene\SongInfo\Disc.cs" />
     <Compile Include="Game\SongSelectScene\SongInfo\SongInfo.cs" />
@@ -121,6 +124,8 @@
     <AndroidResource Include="Resources\raw\one.sst" />
     <AndroidResource Include="Resources\raw\perc.sst" />
     <AndroidResource Include="Resources\raw\seven.sst" />
+    <AndroidResource Include="Resources\raw\rate.sst" />
+    <AndroidResource Include="Resources\raw\maxcombo.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -145,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\noteswind.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\raw\over.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

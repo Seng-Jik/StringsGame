@@ -106,61 +106,70 @@ namespace Strings
 			public const int last = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int miss = 2130903055;
+			public const int maxcombo = 2130903055;
 			
 			// aapt resource value: 0x7f030010
-			public const int next = 2130903056;
+			public const int miss = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int nine = 2130903057;
+			public const int next = 2130903057;
 			
 			// aapt resource value: 0x7f030012
-			public const int notesbwv = 2130903058;
+			public const int nine = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int noteskizuna = 2130903059;
+			public const int notesbwv = 2130903059;
 			
 			// aapt resource value: 0x7f030014
-			public const int noteswind = 2130903060;
+			public const int noteskizuna = 2130903060;
 			
 			// aapt resource value: 0x7f030015
-			public const int ok = 2130903061;
+			public const int noteswind = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int one = 2130903062;
+			public const int ok = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int perc = 2130903063;
+			public const int one = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int perfect = 2130903064;
+			public const int over = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int press = 2130903065;
+			public const int perc = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int seven = 2130903066;
+			public const int perfect = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int six = 2130903067;
+			public const int press = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int start = 2130903068;
+			public const int rate = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int three = 2130903069;
+			public const int seven = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int title = 2130903070;
+			public const int six = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int two = 2130903071;
+			public const int start = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int wind = 2130903072;
+			public const int three = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int zero = 2130903073;
+			public const int title = 2130903073;
+			
+			// aapt resource value: 0x7f030022
+			public const int two = 2130903074;
+			
+			// aapt resource value: 0x7f030023
+			public const int wind = 2130903075;
+			
+			// aapt resource value: 0x7f030024
+			public const int zero = 2130903076;
 			
 			static Raw()
 			{

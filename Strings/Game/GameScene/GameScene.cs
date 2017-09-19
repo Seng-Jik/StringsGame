@@ -40,6 +40,8 @@ namespace Strings.Game.GameScene
             Attach(sideLine);
             bgm.Volume.Value = 1;
             TimeMs.Start();
+
+            scoreInfo = new ScoreScene.ScoreInfo(thisSong);
         }
 
         public override void OnUpdate(double deltaTime)
@@ -61,13 +63,13 @@ namespace Strings.Game.GameScene
             if(now>= map.Notes.Count && !finished)
             {
                 finished = true;
-                Attach(new Task(Finished, 10));
+                Attach(new Task(Finished, 6));
             }
         }
 
         void Finished()
         {
-            Parent.Attach(new SongSelectScene.SongSelectScene(thisSong));
+            Parent.Attach(new ScoreScene.ScoreScene(scoreInfo));
             Kill();
         }
 
@@ -86,17 +88,27 @@ namespace Strings.Game.GameScene
             {
                 case NoteClickType.Perfect:
                     hintID = Resource.Raw.perfect;
+                    scoreInfo.Perfect++;
+                    combo++;
                     break;
                 case NoteClickType.Great:
                     hintID = Resource.Raw.great;
+                    scoreInfo.Great++;
+                    combo++;
                     break;
                 case NoteClickType.Good:
                     hintID = Resource.Raw.good;
+                    scoreInfo.Good++;
+                    combo++;
                     break;
                 case NoteClickType.Miss:
                     hintID = Resource.Raw.miss;
+                    scoreInfo.Miss++;
+                    combo = 0;
                     break;
             }
+
+            if (combo > scoreInfo.MaxCombo) scoreInfo.MaxCombo = combo;
             var hint = new Sprite(hintID);
             Attach(hint);
             hint.Alpha.Value = 1;
@@ -120,5 +132,8 @@ namespace Strings.Game.GameScene
         double Time { get; set; } = 0;
         public Stopwatch TimeMs { get; } = new Stopwatch();
 
+        ScoreScene.ScoreInfo scoreInfo;
+
+        int combo = 0;
     }
 }

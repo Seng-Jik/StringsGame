@@ -86,7 +86,7 @@ namespace Strings.Game.SongSelectScene
 
         void OK()
         {
-
+            EnableButtons(false);
             Func<float, float> func = x => (float)System.Math.Sqrt(1 - (x - 1) * (x - 1));
 
             Action lastButton = () =>

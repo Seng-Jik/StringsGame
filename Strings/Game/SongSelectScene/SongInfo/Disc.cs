@@ -29,7 +29,7 @@ namespace Strings.Game.SongSelectScene.SongInfo
             bgm.Volume.Value = 0;
             bgm.Player.SeekTo(40 * 1000);
             bgm.Player.Looping = true;
-            bgm.Volume.Lerp(0.5f, 1);
+            bgm.Volume.Lerp(1, 1);
 
             info = new Sprite(song.InfoID)
             {
@@ -127,6 +127,7 @@ namespace Strings.Game.SongSelectScene.SongInfo
 
         public void EntryEffectKill()
         {
+            bgm.KillFadeOutTime = 1;
             bgm.Kill();
             info.Alpha.Lerp(0.25f, 0);
             info.KillWhenAlphaIs0 = true;
