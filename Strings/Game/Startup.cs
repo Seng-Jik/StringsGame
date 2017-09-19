@@ -20,7 +20,7 @@ namespace Strings.Game
             base.OnAttached(parent);
 
             //Game Startup
-            ScoreScene.ScoreInfo info = new ScoreScene.ScoreInfo(0)
+            /*ScoreScene.ScoreInfo info = new ScoreScene.ScoreInfo(0)
             {
                 Perfect = 10,
                 Great = 20,
@@ -28,8 +28,8 @@ namespace Strings.Game
                 Miss = 40,
                 MaxCombo = 50
             };
-            parent.Attach(new ScoreScene.ScoreScene(info));
-            //parent.Attach(new TitleScene.TitleScene());
+            parent.Attach(new ScoreScene.ScoreScene(info));*/
+            parent.Attach(new TitleScene.TitleScene());
             //parent.Attach(new GameScene.GameScene(1));
             //parent.Attach(new SongSelectScene.SongSelectScene(2));
             //parent.Attach(new DemoObject());

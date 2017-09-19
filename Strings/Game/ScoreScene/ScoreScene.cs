@@ -32,6 +32,7 @@ namespace Strings.Game.ScoreScene
             float rateB = info.Great / allNote;
             float rateC = info.Good / allNote;
             float rateVal = rateA + rateB * 0.75f + rateB * 0.5f;
+            rateVal *= 100;
             rate = new ScoreGroup(Resource.Raw.rate, 350, (int)rateVal, true,0.5f, 1);
         }
 
@@ -76,12 +77,12 @@ namespace Strings.Game.ScoreScene
                     Parent.Attach(new SongSelectScene.SongSelectScene(info.SongID))
                     ,2));
 
-                rate.Kill();
-                Attach(new Task(() => maxCombo.Kill(), 0.1f));
-                Attach(new Task(() => miss.Kill(), 0.2f));
-                Attach(new Task(() => good.Kill(), 0.3f));
-                Attach(new Task(() => great.Kill(), 0.4f));
-                Attach(new Task(() => perfect.Kill(), 0.5f));
+                perfect.Kill();
+                Attach(new Task(() => great.Kill(), 0.1f));
+                Attach(new Task(() => good.Kill(), 0.2f));
+                Attach(new Task(() => miss.Kill(), 0.3f));
+                Attach(new Task(() => maxCombo.Kill(), 0.4f));
+                Attach(new Task(() => rate.Kill(), 0.5f));
             }
         }
 
