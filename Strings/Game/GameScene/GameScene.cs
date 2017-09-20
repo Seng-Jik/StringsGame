@@ -121,6 +121,18 @@ namespace Strings.Game.GameScene
             hint.Kill();
         }
 
+        public override void OnPaused()
+        {
+            base.OnPaused();
+            TimeMs.Stop();
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            TimeMs.Start();
+        }
+
         bool finished = false;
 
         BeatmapEditor.BeatMap map;
