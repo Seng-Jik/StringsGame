@@ -126,6 +126,7 @@
     <AndroidResource Include="Resources\raw\seven.sst" />
     <AndroidResource Include="Resources\raw\rate.sst" />
     <AndroidResource Include="Resources\raw\maxcombo.sst" />
+    <AndroidResource Include="Resources\raw\aji.sst" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

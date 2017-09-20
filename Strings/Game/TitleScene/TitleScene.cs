@@ -42,6 +42,14 @@ namespace Strings.Game.TitleScene
             title.KillWhenAlphaIs0 = true;
             Attach(title);
             Attach(new Start());
+
+            gLogo = new Sprite(Resource.Raw.aji);
+            gLogo.PosY.Value = 200;
+            gLogo.Alpha.Value = 0;
+            gLogo.Alpha.Lerp(2, 1);
+            gLogo.KillWhenAlphaIs0 = true;
+            gLogo.Zoom.Value = 1.5F;
+            Attach(gLogo);
         }
 
         public override void OnTouched(TouchEvent te)
@@ -60,7 +68,16 @@ namespace Strings.Game.TitleScene
             }
         }
 
+        public override void Kill()
+        {
+            base.Kill();
+
+            gLogo.Alpha.Lerp(0.5F, 0);
+        }
+
         bool touched = false;
         Sprite title;
+
+        Sprite gLogo;
     }
 }
